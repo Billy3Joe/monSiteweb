@@ -52,6 +52,18 @@ try {
         $page = $url[0];
     }
 
+
+     //Pages non autorisées si l'utilisateur n'est pas connecté et administrateur.
+     if ($page == "dashboard") {
+        // Vérifie si l'utilisateur est connecté et a le rôle d'administrateur
+        if (!Securite::estConnecte() || !Securite::estAdministrateur()) {
+            // Si non, redirige vers la page d'accueil
+            Toolbox::ajouterMessageAlerte("Accès non autorisé !", Toolbox::COULEUR_ROUGE);
+            header('Location: ' . URL . "accueil");
+            exit;
+        }
+    }
+    
       //Vérifie si le paramètre GET 'page' est vide. Si c'est le cas, la variable $page est définie sur "accueil" par défaut.
      // Sinon, la valeur de 'page' est filtrée et divisée en un tableau $url en utilisant le délimiteur '/' pour extraire différentes parties de l'URL.
     // La première partie de l'URL est ensuite stockée dans la variable $page.
@@ -237,3 +249,11 @@ try {
 } catch (Exception $e) {
     $visiteurController->pageErreur($e->getMessage());
 }
+
+   //Vérifions que la page est login mais si c'es pas login, je rédirige l'utilisateur vers la page login
+    //Si l'utilisateur veut avoir accès à une autre page de l'admin en dehors de la page login, en étant pas connecté, il sera renvoyé automatiquement vers la page login pour se connecter
+    if ($page == "dashboard" && (!isset($_SESSION['login']) || !isset($_SESSION['mail']) || $_SESSION['role'] !== 'administrateur')) {
+        header('Location: ' . URL . "accueil");
+        exit;
+    }
+    

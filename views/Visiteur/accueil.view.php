@@ -50,37 +50,132 @@
   </div>
 </div>
 
-<!--DOWNLOAD-->
-<div class="container-fluid download-bg wow fadeInUp" id="download">
-  <div class="container">
-    <div class="row justify-content-end">
-      <div>
-        <h3>Small Screen, Big Ideas</h3>
-        <p style="width: 400px;">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia explicabo earum dolore voluptatibus esse, enim aliquid cumque a pariatur nisi, aspernatur placeat animi officia reprehenderit quasi ut voluptates optio ratione?
+<main class="wrapper">
+  <section class="breweries" id="breweries">
+    <ul>
+      <li>
+        <figure>
+          <!-- Photo by Quentin Dr on Unsplash -->
+          <img src="https://images.unsplash.com/photo-1471421298428-1513ab720a8e" alt="Several hands holding beer glasses">
+          <figcaption><h3>Billions upon billions</h3></figcaption>
+        </figure>
+        <p>
+          Made in the interiors of collapsing stars star stuff harvesting star light venture billions upon billions Drake Equation brain is the seed of intelligence?
         </p>
-      </div>
-    </div>
-  </div>
-</div>
-<!--LINKS-->
-<div class="container links" id="link">
-  <div class="row">
-    <div class="col-md-6">
-      <img class="img-fluid wow fadeInRight" src="https://drive.google.com/uc?id=1TPbGx5egyh-bSBqOS-oDUjwPZ_XRH9LB" />
-    </div>
-    <div class="col-md-6 wow fadeInLeft">
-      <h5>Small Watch, Big Time!</h5>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vero odio quae quos. Consequatur explicabo illum, neque, nobis blanditiis sapiente.
-      </p>
-      <h5>Small Watch, Big Time!</h5>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vero odio quae quos. Consequatur explicabo illum, neque, nobis blanditiis sapiente.
-      </p>
-    </div>
-  </div>
-</div>
+        <a class="linkCard" href="#">Visit Website</a>
+      </li>
+      <li>
+        <figure>
+          <!-- Photo by Drew Farwell on Unsplash -->
+          <img src="https://images.unsplash.com/photo-1513309914637-65c20a5962e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3450&q=80" alt="Several friends doing a toast">
+          <figcaption><h3>Drake Equation</h3></figcaption>
+        </figure>
+        <p>
+          Another world citizens of distant epochs from which we spring descended from astronomers Orion's sword shores of the cosmic ocean.
+        </p>
+        <a class="linkCard" href="#">Visit Website</a>
+      </li>
+      <li>
+        <figure>
+          <!-- Photo by Rawpixel on Unsplash -->
+          <img src="https://images.unsplash.com/photo-1535359056830-d4badde79747?ixlib=rb-1.2.1&auto=format&fit=crop&w=3402&q=80" alt="Three different glasses of beer">
+          <figcaption><h3>Vast cosmic arena</h3></figcaption>
+        </figure>
+        <p>
+          Galaxies the ash of stellar alchemy prime number science inconspicuous motes of rock and gas brain is the seed of intelligence.
+        </p>
+        <a class="linkCard" href="#">Visit Website</a>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<style>
+  /* Typography imported from Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+p, a {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Generic styles */
+html {
+  scroll-behavior: smooth;
+}
+
+.linkCard {
+  background-color: goldenrod;
+  text-decoration: none;
+  color: white;
+  border-radius: .25rem;
+  text-align: center;
+  display: inline-block;
+  transition: all .3s;
+}
+
+.linkCard:hover {
+  opacity: .6;
+}
+
+/* Styles for the hero image */
+/* breweries styles */
+.breweries {
+  padding: 2rem;
+}
+
+.breweries > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem;
+}
+
+.breweries > ul > li {
+  border: 1px solid #E2E2E2;
+  border-radius: .5rem;
+}
+
+.breweries > ul > li > figure {
+  max-height: 220px;
+  overflow: hidden;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  position: relative;
+}
+
+.breweries > ul > li > figure > img {
+  width: 100%;
+}
+
+.breweries > ul > li > figure > figcaption {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,.7);
+  width: 100%;
+}
+
+.breweries > ul > li > figure > figcaption > h3 {
+  color: white;
+  padding: .75rem;
+  font-size: 1.25rem;
+}
+
+.breweries > ul > li > p {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 1rem .75rem;
+  color: #666666;
+}
+
+.breweries > ul > li > a {
+  padding: .5rem 1rem;
+  margin: .5rem;
+}
+
+</style>
 <!--CONTACT-->
 <div class="container-fluid contact-us" id="contact">
   <div class="container">
