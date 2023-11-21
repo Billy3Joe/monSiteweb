@@ -13,73 +13,10 @@ background-attachment: fixed;
 color: #fff;
 } */
 .desc-main {
-padding-top: 10rem;
-padding-bottom: 5rem;
+padding-top: 2rem;
+padding-bottom: 2rem;
 }
 
-.desc-main p {
-padding-top: 3rem;
-font-weight: 100;
-}
-
-.desc-main img {
-max-height: 50px;
-margin-top: 1.5rem;
-margin-bottom: 1.5rem;
-}
-
-.display-3 {
-font-weight: 100;
-}
-
-.components {
-padding-top: 5rem;
-padding-bottom: 5rem;
-color: #333;
-}
-
-.components h5,
-p {
-margin-top: 2rem;
-font-weight: 300;
-}
-
-.components h5 {
-font-weight: 700;
-letter-spacing: 2px;
-font-size: 1rem;
-}
-
-.watch {
-height: 100%;
-width: 100%;
-margin-top: 2rem;
-margin-bottom: 2rem;
-}
-
-.carousel-indicators {
-margin-bottom: -1rem;
-}
-
-.carousel-indicators li {
-background: #333;
-margin-top: 3rem;
-}
-
-.carousel-indicators .active {
-background: #4eafeb;
-}
-
-/* .download-bg {
-background: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(33, 33, 33)),
-    url("public/Assets/images/img2.jpg");
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
-padding-top: 5rem;
-padding-bottom: 5rem;
-color: #fff;
-} */
 
 .links {
 padding-top: 5rem;
@@ -96,34 +33,114 @@ width: 75%;
 float: right;
 }
 
-.contact-us {
+/* STYLE CARDS HOME PAGE */
+html {
+scroll-behavior: smooth;
+}
+
+.linkCard {
+background-color: goldenrod;
+text-decoration: none;
+color: white;
+border-radius: .25rem;
 text-align: center;
-color: #fff;
-background: #333;
-padding-top: 5rem;
-padding-bottom: 5rem;
+display: inline-block;
+transition: all .3s;
 }
 
-.contact-us p {
-font-weight: 100;
+.linkCard:hover {
+opacity: .6;
 }
 
-.form-control {
-display: block;
+/* Styles for the hero image */
+/* breweries styles */
+.breweries {
+padding: 2rem;
+}
+
+.breweries > ul {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+grid-gap: 1rem;
+}
+
+.breweries > ul > li {
+border: 1px solid #E2E2E2;
+border-radius: .5rem;
+}
+
+.breweries > ul > li > figure {
+max-height: 220px;
+overflow: hidden;
+border-top-left-radius: .5rem;
+border-top-right-radius: .5rem;
+position: relative;
+}
+
+.breweries > ul > li > figure > img {
 width: 100%;
-padding: 0.5rem 0.75rem;
+}
+
+.breweries > ul > li > figure > figcaption {
+position: absolute;
+bottom: 0;
+background-color: rgba(0,0,0,.7);
+width: 100%;
+}
+
+.breweries > ul > li > figure > figcaption > h3 {
+color: white;
+padding: .75rem;
+font-size: 1.25rem;
+}
+
+.breweries > ul > li > p {
 font-size: 1rem;
-line-height: 1.25;
-color: #ffffff;
-background-color: transparent;
-background-image: none;
--webkit-background-clip: padding-box;
-background-clip: padding-box;
-border: 1px solid rgb(255, 255, 255);
-border-radius: 0rem !important;
+line-height: 1.5;
+padding: 1rem .75rem;
+color: #666666;
 }
 
-form {
-margin-top: 4rem;
-
+.breweries > ul > li > a {
+padding: .5rem 1rem;
+margin: .5rem;
 }
+/* FIN STYLE HOME PAGE */
+
+.contact-us {
+    text-align: center;
+    color: #fff;
+    background: #333;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .contact-us p {
+    font-weight: 100;
+  }
+  
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #ffffff;
+    background-color: transparent;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 0rem !important;
+    margin-bottom: 1rem; /* Ajout pour espacement entre les champs */
+  }
+  
+  form {
+    margin-top: 4rem;
+  }
+  
+  /* Ajout pour les labels */
+  form label {
+    margin-bottom: 0.5rem;
+  }
+  

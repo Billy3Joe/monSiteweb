@@ -51,19 +51,22 @@ try {
         // et assignée à la variable $page
         $page = $url[0];
     }
-
-
+ 
      //Pages non autorisées si l'utilisateur n'est pas connecté et administrateur.
-     if ($page == "dashboard") {
+     if ($page == "dashboard" || $page == "droits") {
         // Vérifie si l'utilisateur est connecté et a le rôle d'administrateur
         if (!Securite::estConnecte() || !Securite::estAdministrateur()) {
             // Si non, redirige vers la page d'accueil
             Toolbox::ajouterMessageAlerte("Accès non autorisé !", Toolbox::COULEUR_ROUGE);
-            header('Location: ' . URL . "accueil");
+            header('Location: ' . URL . "login");
+         
+            Toolbox::ajouterMessageAlerte("Veuillez vous connecter !",Toolbox::COULEUR_ROUGE);
+            header("Location: ".URL."login");
+
             exit;
         }
     }
-    
+
       //Vérifie si le paramètre GET 'page' est vide. Si c'est le cas, la variable $page est définie sur "accueil" par défaut.
      // Sinon, la valeur de 'page' est filtrée et divisée en un tableau $url en utilisant le délimiteur '/' pour extraire différentes parties de l'URL.
     // La première partie de l'URL est ensuite stockée dans la variable $page.
@@ -201,14 +204,14 @@ try {
             if(!Securite::estConnecte()) {
                 Toolbox::ajouterMessageAlerte("Veuillez vous connecter !", Toolbox::COULEUR_ROUGE);
                 header("Location: ".URL."login");
-            } if(!Securite::checkCookieConnexion()) {
+            } elseif(!Securite::checkCookieConnexion()) {
                 // Vérification du cookie de connexion
                 // Si invalide, déconnexion et redirection vers la page de connexion avec un message d'erreur
                 Toolbox::ajouterMessageAlerte("Veuillez vous reconnecter !", Toolbox::COULEUR_ROUGE);
                 setcookie(Securite::COOKIE_NAME,"",time() - 3600);
                 unset($_SESSION["profil"]);
                 header("Location: ".URL."login");
-            } if(!Securite::estAdministrateur()) {
+            } elseif(!Securite::estAdministrateur()) {
                 // Vérification si l'utilisateur est administrateur
                 // Si non administrateur, redirection vers la page d'accueil avec un message d'erreur
                 Toolbox::ajouterMessageAlerte("Vous n'avez le droit d'être ici",Toolbox::COULEUR_ROUGE);
@@ -250,10 +253,4 @@ try {
     $visiteurController->pageErreur($e->getMessage());
 }
 
-   //Vérifions que la page est login mais si c'es pas login, je rédirige l'utilisateur vers la page login
-    //Si l'utilisateur veut avoir accès à une autre page de l'admin en dehors de la page login, en étant pas connecté, il sera renvoyé automatiquement vers la page login pour se connecter
-    if ($page == "dashboard" && (!isset($_SESSION['login']) || !isset($_SESSION['mail']) || $_SESSION['role'] !== 'administrateur')) {
-        header('Location: ' . URL . "accueil");
-        exit;
-    }
-    
+   

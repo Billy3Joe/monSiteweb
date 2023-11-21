@@ -90,92 +90,6 @@
   </section>
 </main>
 
-<style>
-  /* Typography imported from Google Fonts */
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400');
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-}
-
-p, a {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-/* Generic styles */
-html {
-  scroll-behavior: smooth;
-}
-
-.linkCard {
-  background-color: goldenrod;
-  text-decoration: none;
-  color: white;
-  border-radius: .25rem;
-  text-align: center;
-  display: inline-block;
-  transition: all .3s;
-}
-
-.linkCard:hover {
-  opacity: .6;
-}
-
-/* Styles for the hero image */
-/* breweries styles */
-.breweries {
-  padding: 2rem;
-}
-
-.breweries > ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 1rem;
-}
-
-.breweries > ul > li {
-  border: 1px solid #E2E2E2;
-  border-radius: .5rem;
-}
-
-.breweries > ul > li > figure {
-  max-height: 220px;
-  overflow: hidden;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
-  position: relative;
-}
-
-.breweries > ul > li > figure > img {
-  width: 100%;
-}
-
-.breweries > ul > li > figure > figcaption {
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(0,0,0,.7);
-  width: 100%;
-}
-
-.breweries > ul > li > figure > figcaption > h3 {
-  color: white;
-  padding: .75rem;
-  font-size: 1.25rem;
-}
-
-.breweries > ul > li > p {
-  font-size: 1rem;
-  line-height: 1.5;
-  padding: 1rem .75rem;
-  color: #666666;
-}
-
-.breweries > ul > li > a {
-  padding: .5rem 1rem;
-  margin: .5rem;
-}
-
-</style>
 <!--CONTACT-->
 <div class="container-fluid contact-us" id="contact">
   <div class="container">
@@ -183,37 +97,46 @@ html {
     <p class="lead">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, velit, at. Ea officiis ullam, qui cum cumque mollitia vel, sed autem esse sint unde voluptatem, sapiente doloremque tenetur ipsa illum.
     </p>
-    <form>
+    <form class="form-inline">
       <div class="form-group wow fadeInUp">
-        <label for="formGroupExampleInput">Example label</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" />
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Your Name" />
       </div>
-      <div class="form-group">
-        <label for="formGroupExampleInput2">Another label</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+      <div class="form-group wow fadeInUp">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Your Email" />
+      </div>
+      <div class="form-group wow fadeInUp">
+        <label for="phone">Phone</label>
+        <input type="tel" class="form-control" id="phone" placeholder="Your Phone" />
+      </div>
+      <div class="form-group wow fadeInUp">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
       </div>
     </form>
   </div>
 </div>
 
+
 <style>
   .header-bg {
-background: linear-gradient(to left, rgba(33, 33, 33, 0.27), rgb(33, 33, 33)),
-    url("public/Assets/images/img1.webp");
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
-color: #fff;
-}
+  background: linear-gradient(to left, rgba(33, 33, 33, 0.27), rgb(33, 33, 33)),
+      url("public/Assets/images/img1.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  }
 
-.download-bg {
-background: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(33, 33, 33)),
-    url("public/Assets/images/img2.jpg");
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
-padding-top: 5rem;
-padding-bottom: 5rem;
-color: #fff;
-}
-</style>
+  .download-bg {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(33, 33, 33)),
+      url("public/Assets/images/img2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  color: #fff;
+  }
+  </style>
