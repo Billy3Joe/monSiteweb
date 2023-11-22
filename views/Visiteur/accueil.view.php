@@ -97,22 +97,27 @@
     <p class="lead">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, velit, at. Ea officiis ullam, qui cum cumque mollitia vel, sed autem esse sint unde voluptatem, sapiente doloremque tenetur ipsa illum.
     </p>
-    <form class="form-inline">
+    <form class="form-inline" action="" method="post">
       <div class="form-group wow fadeInUp">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Your Name" />
+        <input type="text" class="form-control" id="name"  name="name" required="required" data-error="Firstname is required." placeholder="Your Name" />
       </div>
       <div class="form-group wow fadeInUp">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Your Email" />
+        <input type="email" class="form-control" id="email" name="email" required="required" data-error="Firstname is required." placeholder="Your Email" />
       </div>
       <div class="form-group wow fadeInUp">
         <label for="phone">Phone</label>
-        <input type="tel" class="form-control" id="phone" placeholder="Your Phone" />
+        <input type="tel" class="form-control" id="phone" name="phone" required="required" data-error="Firstname is required." placeholder="Your Phone" />
       </div>
       <div class="form-group wow fadeInUp">
         <label for="message">Message</label>
-        <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+        <textarea class="form-control" id="message" rows="5" name="message" required="required" data-error="Firstname is required." placeholder="Your Message"></textarea>
+      </div>
+      <div class="col s12">
+          <div class="col s12">
+              <input type="submit" name="ok" class="btn btn-warning btn-send" value="Envoyer">
+          </div>
       </div>
     </form>
   </div>
