@@ -235,15 +235,21 @@ try {
         break;
         // Régénération du cookie de connexion
         Securite::genererCookieConnexion();
-         
-        // Si la valeur de "$url[1]" est "droits", affiche la page de gestion des droits
-        case "droits" : $administrateurController->droits();
-        break;
+        
         case "dashboard" : $administrateurController->dashboard();
         break;
-         // Si la valeur de "$url[1]" est "validation_modificationRole", appelle la méthode pour valider la modification des rôles
-        case "validation_modificationRole" : $administrateurController->validation_modificationRole($_POST['login'],$_POST['role']);
-        break;
+        case "update_data_user":
+            // Vérifie si l'ID de l'utilisateur à modifier est présent dans l'URL
+            if (!empty($url[1])) {
+                // Appelle la méthode modifierUtilisateur() du contrôleur $administrateurController
+                $administrateurController->update_data_user($url[1]);
+            } else {
+                // Redirige vers la page d'accueil si l'ID n'est pas spécifié
+                header("Location: " . URL . "accueil");
+            }
+            break;
+            
+        
         // Si la valeur de "$url[1]" ne correspond à aucun "case" défini, une exception est lancée
        //  default : throw new Exception("La page n'existe pas");
          // Si la valeur de "$page" ne correspond à aucun "case" défini, une exception est lancée

@@ -64,24 +64,38 @@
             <div class="info-image"><i class="fas fa-money-check-alt"></i></div>
           </div>
         </div>
-
+        
         <div class="card total2">          
-          <div class="info">
-            <div class="info-detail">
-              <h3>Messages</h3>
-              <p>Reçus</p>
-              <h2>20 <span>Messages</span></h2>
+            <div class="info">
+                <div class="info-detail">
+                   <?php 
+                    // Créer une instance de AdministrateurManager
+                    $administrateurManager = new AdministrateurManager();
+                    
+                    // Récupérer le nombre total de messages
+                    $nombreMessages = $administrateurManager->getNombreMessages();
+                    ?>
+                    <h3>Messages</h3>
+                    <p>Reçus</p>
+                    <h2><?php echo $nombreMessages; ?> <span>Messages</span></h2>
+                </div>
+                <div class="info-image"><i class="fas fa-boxes"></i></div>
             </div>
-            <div class="info-image"><i class="fas fa-boxes"></i></div>
-          </div>
         </div>
 
         <div class="card total3">
           <div class="info">
-            <div class="info-detail">
+            <div class="info-detail"> 
+                <?php 
+                // Créer une instance de AdministrateurManager
+                $administrateurManager = new AdministrateurManager();
+                
+                // Récupérer le nombre total de messages
+                $nombreUtilisateurs = $administrateurManager->getNombreMessages();
+                ?>
               <h3>Utilisateurs</h3>
               <p>Nombre</p>
-              <h2>10 <span>Membres</span></h2>
+              <h2><?php echo $nombreUtilisateurs; ?> <span>Utilisateurs</span></h2>
             </div>
             <div class="info-image"><i class="fas fa-user-friends"></i></div>
           </div>
@@ -187,40 +201,37 @@
         </div>
     </main>
     <h1 style="text-align:center;">Page de gestion des droits des utilisateurs</h1>
-<table class="table">
+    <table class="table">
     <thead>
         <tr>  
             <th>Photo</th>
             <th>Login</th>
-            <th>email</th>
+            <th>Email</th>
             <th>Situation</th>
             <th>Rôle</th>
+            <th>Action</th>
         </tr>
+    </thead>
+    <tbody>
         <?php foreach ($utilisateurs as $utilisateur) : ?>
             <tr>
-
                 <td> <img class="customer-image" src="<?= URL; ?>public/Assets/images/<?= $utilisateur['image'] ?>" width="100px" alt="photo de profil" /></td>
                 <td><?= $utilisateur['login'] ?></td>
                 <td><?= $utilisateur['mail'] ?></td>
-                <td><?= (int)$utilisateur['est_valide'] === 0 ? "non validé" : "validé" ?></td>
+                <td><?= $utilisateur['est_valide'] ?></td>
+                <td><?= $utilisateur['role'] ?></td>
                 <td>
-                    <?php if($utilisateur['role'] === "administrateur") : ?>
-                        <?= $utilisateur['role'] ?>
-                    <?php else: ?>
-                        <form method="POST" action="<?= URL ?>administration/validation_modificationRole">
-                            <input type="hidden" name="login" value="<?= $utilisateur['login'] ?>" />
-                            <select class="form-select" name="role" onchange="confirm('Confirmez vous la modification du rôle ?') ? submit() : document.location.reload()">
-                                <option value="utilisateur" <?= $utilisateur['role'] === "utilisateur" ? "selected" : ""?>>Utilisateur</option>
-                                <option value="superutilisateur" <?= $utilisateur['role'] === "superutilisateur" ? "selected" : ""?>>Super Utilisateur</option>
-                                <option value="administrateur" <?= $utilisateur['role'] === "administrateur" ? "selected" : ""?>>Administrateur</option>
-                            </select>
-                        </form>
-                    <?php endif; ?>
+                    <!-- Bouton Modifier avec lien vers la page de modification -->
+                    <a href="<?= URL ?>update_data_user/<?= $utilisateur['id'] ?>" class="btn btn-warning">Modifier</a>
+
+                    <!-- Bouton Supprimer -->
+                    <a href="<?= URL ?>administration/supprimer_utilisateur/<?= $utilisateur['id'] ?>" class="btn btn-danger" onclick="return confirm('Confirmez-vous la suppression ?')">Supprimer</a>
+
                 </td>
             </tr>
         <?php endforeach; ?>
-    </thead>
-</table>
+    </tbody>
+    </table>
 
     <script src="script.js"></script>
   </body>

@@ -8,6 +8,7 @@ class AdministrateurController extends MainController {
     public function __construct() {
         $this->administrateurManager = new AdministrateurManager();
     }
+
     public function dashboard() {
         $utilisateurs = $this->administrateurManager->getUtilisateurs();
         $data_page = [
@@ -19,28 +20,47 @@ class AdministrateurController extends MainController {
         ];
         $this->genererPage($data_page);
     }
-    public function droits() {
-        $utilisateurs = $this->administrateurManager->getUtilisateurs();
 
+    public function update_data_user($id) {
+        // Récupérer l'utilisateur par son ID
+        $utilisateur = $this->administrateurManager->getUtilisateurById($id);
+    
+        // Initialiser $erreur à null
+        $erreur = null;
+    
+        // Vérifier si le formulaire de modification a été soumis
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Récupérer les données du formulaire
+            $nouveauRole = Securite::secureHTML($_POST["role"]);
+    
+            // Effectuer la mise à jour du rôle
+            $estModifie = $this->administrateurManager->modifierRoleUtilisateur($id, $nouveauRole);
+    
+            // Vérifier si la modification a réussi
+            if ($estModifie) {
+                // Rediriger vers une page de confirmation ou vers la liste des utilisateurs
+                header("Location: " . URL . "dashboard");
+                exit();
+            } else {
+                // La modification a échoué, vous pouvez gérer cela en affichant un message d'erreur
+                $erreur = "Échec de la modification du rôle.";
+            }
+        }
+        
+        // Préparer les données pour la vue
         $data_page = [
-            "page_description" => "Gestion des droits",
-            "page_title" => "Gestion des droits",
-            "utilisateurs" => $utilisateurs,
-            "view" => "views/Administrateur/droits.view.php",
+            "page_description" => "Modification des données utilisateur",
+            "page_title" => "Gestion des données",
+            "utilisateur" => $utilisateur,
+            "erreur" => $erreur, // Pas besoin de ?? null ici, car $erreur est toujours défini
+            "view" => "views/Administrateur/update_data_user.view.php",
             "template" => "views/common/template.php"
         ];
-        $this->genererPage($data_page);
+    
+       // Générer la page
+       $this->genererPage($data_page);
     }
-
-    public function validation_modificationRole($login,$role) {
-        if($this->administrateurManager->bdModificationRoleUser($login,$role)) {
-            Toolbox::ajouterMessageAlerte("La modification du rôle a été prise en compte", Toolbox::COULEUR_VERTE);
-        } else {
-            Toolbox::ajouterMessageAlerte("La modification du rôle n'a pas été prise en compte", Toolbox::COULEUR_ROUGE);
-        }
-        header("Location: ".URL."administration/droits");
-    }
-
+      
     public function pageErreur($msg){
         parent::pageErreur($msg);
     }

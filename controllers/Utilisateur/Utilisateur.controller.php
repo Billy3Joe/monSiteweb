@@ -22,7 +22,7 @@ class UtilisateurController extends MainController {
             // Vérifie si le compte associé au login est activé
             if ($this->utilisateurManager->estCompteActive($login)) {
                 // Affiche un message de bienvenue et redirige vers le profil
-                Toolbox::ajouterMessageAlerte("Bon retour sur le site " . $login . " !", Toolbox::COULEUR_VERTE);
+                Toolbox::ajouterMessageAlerte("Bienvenuesur le site " . $login . " !", Toolbox::COULEUR_VERTE);
                 $_SESSION['profil'] = [
                     "login" => $login,
                 ];
