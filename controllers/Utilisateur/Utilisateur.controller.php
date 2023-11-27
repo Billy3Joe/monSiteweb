@@ -161,12 +161,12 @@ class UtilisateurController extends MainController {
 
     public function validation_mailCompte($login,$clef) {
         if($this->utilisateurManager->bdValidationMailCompte($login,$clef)) {
-            // Toolbox::ajouterMessageAlerte("Le compte a été activé !", Toolbox::COULEUR_VERTE);
+            Toolbox::ajouterMessageAlerte("Le compte a été activé !", Toolbox::COULEUR_VERTE);
             // Soit l'utilisateur est directement connecté
-            // $_SESSION['profil'] = [
-            //     "login" => $login,
-            // ];
-            // header('Location: '.URL.'compte/profil');
+            $_SESSION['profil'] = [
+                "login" => $login,
+            ];
+            header('Location: '.URL.'compte/profil');
             // Ou l'utilisateur doit se connecté
             Toolbox::ajouterMessageAlerte("Le compte a été activé ! Veuillez vous connecter", Toolbox::COULEUR_VERTE);
             header('Location: '.URL.'login');

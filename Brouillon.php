@@ -31,18 +31,29 @@ $utilisateurController = new UtilisateurController();
 // Contrôleur pour les administrateurs
 $administrateurController = new AdministrateurController();
 
-// ... (votre code précédent)
+
+//Inclut les fichiers des classes et des contrôleurs nécessaires pour le fonctionnement du site.
+//Crée des instances des contrôleurs VisiteurController, UtilisateurController et AdministrateurController qui seront utilisées pour gérer les différentes pages et actions.
 
 try {
+    //Début d'un bloc d'essai pour capturer les éventuelles exceptions qui pourraient être lancées pendant l'exécution du code.
+    // Vérifie si la clé 'page' existe dans la variable superglobale $_GET et si elle est vide
     if (empty($_GET['page'])) {
+        // Si 'page' est vide, définit la variable $page à la valeur "accueil"
         $page = "accueil";
     } else {
+        // Si 'page' n'est pas vide, filtre et nettoie la valeur de 'page'
+        // en utilisant filter_var avec l'option FILTER_SANITIZE_URL
+        // puis divise la chaîne en un tableau en utilisant '/' comme délimiteur
         $url = explode("/", filter_var($_GET['page'], FILTER_SANITIZE_URL));
+
+        // La première partie de l'URL (avant le premier '/') est extraite
+        // et assignée à la variable $page
         $page = $url[0];
     }
-    
-       //Pages non autorisées si l'utilisateur n'est pas connecté et administrateur.
-       if ($page == "dashboard" || $page == "update_data_user") {
+ 
+     //Pages non autorisées si l'utilisateur n'est pas connecté et administrateur.
+     if ($page == "dashboard" || $page == "droits") {
         // Vérifie si l'utilisateur est connecté et a le rôle d'administrateur
         if (!Securite::estConnecte() || !Securite::estAdministrateur()) {
             // Si non, redirige vers la page d'accueil
@@ -56,18 +67,23 @@ try {
         }
     }
 
+      //Vérifie si le paramètre GET 'page' est vide. Si c'est le cas, la variable $page est définie sur "accueil" par défaut.
+     // Sinon, la valeur de 'page' est filtrée et divisée en un tableau $url en utilisant le délimiteur '/' pour extraire différentes parties de l'URL.
+    // La première partie de l'URL est ensuite stockée dans la variable $page.
     switch ($page) {
-
+        // Si la valeur de $page est "accueil"
         case "accueil":
+            // Appelle la méthode accueil() du contrôleur $visiteurController
             $visiteurController->accueil();
             break;
-
+        // Si la valeur de $page est "login"
         case "login":
+            // Appelle la méthode login() du contrôleur $visiteurController
             $visiteurController->login();
             break;
-
+    
+        // Si la valeur de $page est "validation_login"
         case "validation_login":
-            // Gestion de la validation du login
             // Vérifie si les champs 'login' et 'password' du formulaire POST ne sont pas vides
             if (!empty($_POST['login']) && !empty($_POST['password'])) {
                 // Sécurise les données du formulaire
@@ -84,15 +100,17 @@ try {
                 header('Location: ' . URL . "login");
             }
             break;
-
+    
+        // Si la valeur de $page est "creerCompte"
         case "creerCompte":
+            // Appelle la méthode creerCompte() du contrôleur $visiteurController
             $visiteurController->creerCompte();
             break;
-
+    
+        // Si la valeur de $page est "validation_creerCompte"
         case "validation_creerCompte":
-            // Gestion de la validation de la création de compte
-             // Vérifie si les champs 'login', 'password' et 'mail' du formulaire POST ne sont pas vides
-             if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['mail'])) {
+            // Vérifie si les champs 'login', 'password' et 'mail' du formulaire POST ne sont pas vides
+            if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['mail'])) {
                 // Sécurise les données du formulaire
                 $login = Securite::secureHTML($_POST['login']);
                 $password = Securite::secureHTML($_POST['password']);
@@ -108,23 +126,22 @@ try {
                 header("Location: " . URL . "creerCompte");
             }
             break;
-
+    
+        // Si la valeur de $page est "renvoyerMailValidation"
         case "renvoyerMailValidation":
-            // Gestion de l'envoi du mail de validation
             // Appelle la méthode renvoyerMailValidation() du contrôleur $utilisateurController avec le paramètre $url[1]
             $utilisateurController->renvoyerMailValidation($url[1]);
             break;
-
+    
+        // Si la valeur de $page est "validationMail"
         case "validationMail":
-            // Gestion de la validation du mail
             // Appelle la méthode validation_mailCompte() du contrôleur $utilisateurController avec les paramètres $url[1] et $url[2]
             $utilisateurController->validation_mailCompte($url[1], $url[2]);
             break;
 
-        case "compte":
-            // Gestion des pages liées au compte utilisateur
-              // Vérification si l'utilisateur est connecté
-              if(!Securite::estConnecte()) {
+        case "compte" : 
+            // Vérification si l'utilisateur est connecté
+            if(!Securite::estConnecte()) {
                 // Si non connecté, redirection vers la page de connexion avec un message d'erreur
                 Toolbox::ajouterMessageAlerte("Veuillez vous connecter !", Toolbox::COULEUR_ROUGE);
                 header("Location: ".URL."login");
@@ -181,41 +198,63 @@ try {
                     default : throw new Exception("La page n'existe pas");
                 }
             }
-            break;
+        break;
+        case "administration" :
+            if(!Securite::estConnecte()) {
+                Toolbox::ajouterMessageAlerte("Veuillez vous connecter !", Toolbox::COULEUR_ROUGE);
+                header("Location: ".URL."login");
+            } elseif(!Securite::checkCookieConnexion()) {
+                // Vérification du cookie de connexion
+                // Si invalide, déconnexion et redirection vers la page de connexion avec un message d'erreur
+                Toolbox::ajouterMessageAlerte("Veuillez vous reconnecter !", Toolbox::COULEUR_ROUGE);
+                setcookie(Securite::COOKIE_NAME,"",time() - 3600);
+                unset($_SESSION["profil"]);
+                header("Location: ".URL."login");
+            } elseif(!Securite::estAdministrateur()) {
+                // Vérification si l'utilisateur est administrateur
+                // Si non administrateur, redirection vers la page d'accueil avec un message d'erreur
+                Toolbox::ajouterMessageAlerte("Vous n'avez le droit d'être ici",Toolbox::COULEUR_ROUGE);
+                header("Location: ".URL."accueil");
+            }else {
+                // Régénération du cookie de connexion
+                Securite::genererCookieConnexion();
+                switch($url[1]) { 
+                    // Si la valeur de "$url[1]" est "droits", affiche la page de gestion des droits
+                    case "dashboard" : $administrateurController->dashboard();
+                    break;
 
-
-        // Régénération du cookie de connexion
-        Securite::genererCookieConnexion();
-            // Gestion des pages liées à l'administration
-            case "dashboard" : $administrateurController->dashboard();
-            break;
-
-            case "update_data_user":
-                // Vérifie si l'ID de l'utilisateur à modifier est présent dans l'URL
-                if (!empty($url[1])) {
-                    // Appelle la méthode modifierUtilisateur() du contrôleur $administrateurController
-                    $administrateurController->update_data_user($url[1]);
-                } else {
-                    // Redirige vers la page d'accueil si l'ID n'est pas spécifié
-                    header("Location: " . URL . "accueil");
-                }
-                break;
-                // Ajoutez une nouvelle case pour "toggle_user_status"
-                case "toggle_user_status":
-                    // Vérifie si l'ID de l'utilisateur est présent dans l'URL
+                   case "update_data_user":
+                    // Vérifie si l'ID de l'utilisateur à modifier est présent dans l'URL
                     if (!empty($url[1])) {
-                        $administrateurController->toggleUserStatus($url[1]);
+                        // Appelle la méthode modifierUtilisateur() du contrôleur $administrateurController
+                        $administrateurController->update_data_user($url[1]);
                     } else {
                         // Redirige vers la page d'accueil si l'ID n'est pas spécifié
                         header("Location: " . URL . "accueil");
                     }
                     break;
 
+                    case "delete_data_user":
+                        // Vérifie si l'ID de l'utilisateur à supprimer est présent dans l'URL
+                        if (!empty($url[2])) {
+                            $administrateurController->delete_data_user($url[2]);
+                        } else {
+                            // Redirige vers la page d'accueil si l'ID n'est pas spécifié
+                            header("Location: " . URL . "accueil");
+                        }
+                        break;
 
 
-        default:
-            throw new Exception("La page n'existe pas");
+                    // Si la valeur de "$url[1]" ne correspond à aucun "case" défini, une exception est lancée
+                    default : throw new Exception("La page n'existe pas");
+                }
+            }
+        break;
+        
+        default : throw new Exception("La page n'existe pas pas");
     }
 } catch (Exception $e) {
     $visiteurController->pageErreur($e->getMessage());
 }
+
+   

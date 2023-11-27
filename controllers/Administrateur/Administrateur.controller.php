@@ -60,6 +60,32 @@ class AdministrateurController extends MainController {
        // Générer la page
        $this->genererPage($data_page);
     }
+   
+
+    public function toggleUserStatus($userId){
+        // Votre logique pour activer/désactiver l'utilisateur en fonction de $userId
+        // Mettez à jour la base de données, par exemple, en utilisant votre modèle
+        $success = $this->administrateurManager->toggleUserStatus($userId);
+    
+        if ($success) {
+            // L'utilisateur a été activé/désactivé avec succès
+            $confirmationMessage = "L'utilisateur a été activé/désactivé avec succès.";
+            header("Location: " . URL . "dashboard?confirmation=" . urlencode($confirmationMessage));
+        } else {
+            // Une erreur s'est produite
+            $errorMessage = "Une erreur s'est produite lors de l'activation/désactivation de l'utilisateur.";
+            header("Location: " . URL . "dashboard?error=" . urlencode($errorMessage));
+        }
+    
+        // Assurez-vous de quitter ici pour éviter que d'autres choses ne soient envoyées dans la réponse
+        exit;
+    }
+    
+
+    
+    
+    
+
       
     public function pageErreur($msg){
         parent::pageErreur($msg);

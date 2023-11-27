@@ -91,7 +91,7 @@
                 $administrateurManager = new AdministrateurManager();
                 
                 // Récupérer le nombre total de messages
-                $nombreUtilisateurs = $administrateurManager->getNombreMessages();
+                $nombreUtilisateurs = $administrateurManager->getNombreUtilisateur();
                 ?>
               <h3>Utilisateurs</h3>
               <p>Nombre</p>
@@ -207,7 +207,7 @@
             <th>Photo</th>
             <th>Login</th>
             <th>Email</th>
-            <th>Situation</th>
+            <th>Est_valide</th>
             <th>Rôle</th>
             <th>Action</th>
         </tr>
@@ -224,8 +224,20 @@
                     <!-- Bouton Modifier avec lien vers la page de modification -->
                     <a href="<?= URL ?>update_data_user/<?= $utilisateur['id'] ?>" class="btn btn-warning">Modifier</a>
 
-                    <!-- Bouton Supprimer -->
-                    <a href="<?= URL ?>administration/supprimer_utilisateur/<?= $utilisateur['id'] ?>" class="btn btn-danger" onclick="return confirm('Confirmez-vous la suppression ?')">Supprimer</a>
+                    <!-- Formulaire pour l'activation/désactivation -->
+                    <form action="<?= URL ?>toggle_user_status/<?= $utilisateur['id'] ?>" method="post">
+                        <?php
+                        // Déterminez le texte et la classe CSS en fonction de l'état de l'utilisateur
+                        $text = $utilisateur['est_valide'] ? 'Désactivé' : 'Activé';
+                        $class = $utilisateur['est_valide'] ? 'btn-secondary' : 'btn-success';
+                        ?>
+
+                        <button type="submit" class="btn <?= $class ?>">
+                            <?= $text ?>
+                        </button>
+                    </form>
+
+
 
                 </td>
             </tr>
