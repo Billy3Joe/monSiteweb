@@ -190,6 +190,14 @@ try {
             case "dashboard" : $administrateurController->dashboard();
             break;
 
+             // Gestion des pages liées à l'administration
+             case "users" : $administrateurController->users();
+             break;
+
+              // Gestion des pages liées à l'administration
+              case "messages" : $administrateurController->messages();
+              break;
+
             case "update_data_user":
                 // Vérifie si l'ID de l'utilisateur à modifier est présent dans l'URL
                 if (!empty($url[1])) {

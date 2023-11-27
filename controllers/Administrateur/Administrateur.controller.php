@@ -21,6 +21,30 @@ class AdministrateurController extends MainController {
         $this->genererPage($data_page);
     }
 
+    public function users() {
+        $utilisateurs = $this->administrateurManager->getUtilisateurs();
+        $data_page = [
+            "page_description" => "Description de la page utilisateur",
+            "page_title" => "Titre de la page utilisateur",
+            "utilisateurs" => $utilisateurs,
+            "view" => "views/Administrateur/users.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function messages() {
+        $messages = $this->administrateurManager->getMessages();
+        $data_page = [
+            "page_description" => "Description de la page message",
+            "page_title" => "Titre de la page maessage",
+            "messages" => $messages,
+            "view" => "views/Administrateur/messages.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
     public function update_data_user($id) {
         // Récupérer l'utilisateur par son ID
         $utilisateur = $this->administrateurManager->getUtilisateurById($id);

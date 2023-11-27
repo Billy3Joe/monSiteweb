@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
-    <meta name="author" content="Pharell">
 
-    <!-- styling -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- font: poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <!-- icons: Font Awesome 5.15 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <title>Responsitive Dashboard Admin</title>
-  </head>
   <body>
     <!-- navbar -->
     <!-- <nav class="navbar">
@@ -26,7 +11,7 @@
     </nav> -->
 
     <!-- sidebar -->
-    <input type="checkbox" id="toggle">
+    <!--<input type="checkbox" id="toggle">
     <label class="side-toggle" for="toggle"><span class="fas fa-bars"></span></label>
 
     <div class="sidebar">
@@ -48,7 +33,7 @@
       <div class="sidebar-menu">
         <span class="fas fa-cog"></span><p>Paramètre</p>
       </div>
-    </div>
+    </div> -->
 
     <!-- main dahsboard -->
     <main>
@@ -200,55 +185,6 @@
             </div>
         </div>
     </main>
-    <h1 style="text-align:center;">Page de gestion des droits des utilisateurs</h1>
-    <table class="table">
-    <thead>
-        <tr>  
-            <th>Photo</th>
-            <th>Login</th>
-            <th>Email</th>
-            <th>Est_valide</th>
-            <th>Rôle</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($utilisateurs as $utilisateur) : ?>
-            <tr>
-                <td> <img class="customer-image" src="<?= URL; ?>public/Assets/images/<?= $utilisateur['image'] ?>" width="100px" alt="photo de profil" /></td>
-                <td><?= $utilisateur['login'] ?></td>
-                <td><?= $utilisateur['mail'] ?></td>
-                <td><?= $utilisateur['est_valide'] ?></td>
-                <td><?= $utilisateur['role'] ?></td>
-                <td>
-                    <!-- Bouton Modifier avec lien vers la page de modification -->
-                    <a href="<?= URL ?>update_data_user/<?= $utilisateur['id'] ?>" class="btn btn-warning">Modifier</a>
-
-                    <!-- Formulaire pour l'activation/désactivation -->
-                    <form action="<?= URL ?>toggle_user_status/<?= $utilisateur['id'] ?>" method="post">
-                        <?php
-                        // Déterminez le texte et la classe CSS en fonction de l'état de l'utilisateur
-                        $text = $utilisateur['est_valide'] ? 'Désactivé' : 'Activé';
-                        $class = $utilisateur['est_valide'] ? 'btn-secondary' : 'btn-success';
-                        ?>
-
-                        <button type="submit" class="btn <?= $class ?>">
-                            <?= $text ?>
-                        </button>
-                    </form>
-
-
-
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-    </table>
-
-    <script src="script.js"></script>
-  </body>
-</html>
-
 <style>
     *{
   margin: 0;
@@ -262,30 +198,7 @@ body{
   background-color: #f4f4fb;
 }
 
-h2{
-  font: 18px;
-  padding: 15px 0;
-}
-h2 > span{
-  font-size: 14px;
-}
-
 /*------------------------------*/
-/* .navbar{
-  display: flex;
-  position: fixed;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 55px;
-  top: 0;
-  left: 0;
-  background-color: #fff; 
-  z-index: 2;
-  padding-left: 6rem;
- 
-} */
-
 .profile{
   display: flex;
   width: 32%;
@@ -317,45 +230,6 @@ h2 > span{
 }
 
 #toggle {
-  display: none;
-}
-
-.sidebar{
-  position: fixed;
-  height: 100%;
-  width: 200px;
-  left: 0;
-  top: 0;
-  padding: 80px 0 200px 0;
-  color: #fff;
-  background-color: #2d2b98;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.sidebar-menu{
-  display: flex;
-  align-items: center;
-  padding: 15px 25px;
-  width: 100%;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.sidebar-menu > span{
-  font-size: 25px;
-  padding-right: 30px;
-}
-
-.sidebar-menu:hover{
-  color: #2d2b98;
-  background-color: #f8f8f8;
-}
-
-#toggle:checked ~ .sidebar{
-  width: 70px;
-}
-
-#toggle:checked ~ .sidebar .sidebar-menu > p{
   display: none;
 }
 

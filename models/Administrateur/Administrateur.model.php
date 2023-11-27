@@ -64,6 +64,15 @@ class AdministrateurManager extends MainManager {
         return $stmt->rowCount() > 0;
     }
 
+     //Fonction pour récupérer la liste de tous les utilisateurs enregistrés sur le site
+     public function getMessages() {
+        $req = $this->getBdd()->prepare("SELECT * FROM contact");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
+    
     //Fonction pour recupérer le nombre total des messages envoyés par les utilisateurs
     public function getNombreMessages() {
         $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_messages FROM contact");
