@@ -37,8 +37,9 @@ class UtilisateurController extends MainController {
                 header("location: " . URL . "compte/profil");
             } else {
                 // Affiche un message d'erreur si le compte n'est pas activé
-                $message = "Le compte " . $login . " n'a pas été activé par mail. ";
-                $message .= "<a href='renvoyerMailValidation/" . $login . "'>Renvoyez le mail de validation</a>";
+                $message = "Le compte " . $login . " n'a pas été activé. ";
+                // $message .= "<a href='renvoyerMailValidation/" . $login . "'>Renvoyez le mail de validation</a>";
+                $message .= "<a href='renvoyerMailValidation/" . $login . "'>Veillez nous envoyer un message via le formulaire de contact afin que votre compte puisse être activé. </a>. Merci à vous...";
                 Toolbox::ajouterMessageAlerte($message, Toolbox::COULEUR_ROUGE);
                 header("Location: " . URL . "login");
             }

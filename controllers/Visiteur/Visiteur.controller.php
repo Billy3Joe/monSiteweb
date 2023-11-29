@@ -45,6 +45,40 @@ class VisiteurController extends MainController {
         $this->genererPage($data_page);
     }
 
+    public function voirCreations()
+    {
+        $data_page = [
+            "page_description" => "Description de la page d'accueil",
+            "page_title" => "Titre de la page d'accueil",
+            "view" => "views/Visiteur/accueil.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function creationsDeveloppement()
+    {
+        $data_page = [
+            "page_description" => "Description de la page de création développement",
+            "page_title" => "Titre de la page d'accueil",
+            "view" => "views/Visiteur/developpement.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function creationsDesign()
+    {
+        $data_page = [
+            "page_description" => "Description de la page de création design",
+            "page_title" => "Titre de la page d'accueil",
+            "view" => "views/Visiteur/design.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+
     public function pageErreur($message){
         parent::pageErreur($message);
     }

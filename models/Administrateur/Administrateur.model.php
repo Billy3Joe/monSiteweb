@@ -81,5 +81,30 @@ class AdministrateurManager extends MainManager {
         $req->closeCursor();
         return $result['nombre_messages'];
     }
+    
+   
+    public function deleteMessage($idMessage) {
+        // Vérifiez si l'identifiant du message est valide
+        if (is_numeric($idMessage)) {
+            // Préparez la requête SQL pour supprimer le message
+            $sql = "DELETE FROM contact WHERE id = :id";
 
+            // Préparez la requête
+            $stmt = $this->getBdd()->prepare($sql);
+
+            // Liez les paramètres
+            $stmt->bindParam(":id", $idMessage, PDO::PARAM_INT);
+
+            // Exécutez la requête
+            $stmt->execute();
+
+            // Vérifiez si la suppression a réussi
+            return $stmt->rowCount() > 0;
+        }
+
+        // L'identifiant du message n'est pas valide
+        return false;
+    }
 }
+
+

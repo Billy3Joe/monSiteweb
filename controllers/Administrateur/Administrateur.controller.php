@@ -105,7 +105,27 @@ class AdministrateurController extends MainController {
         exit;
     }
     
+    public function deleteMessageUser($messageId)
+    {
+        // Effectuez ici la logique de suppression en utilisant votre modèle ou gestionnaire d'administrateurs
+        $success = $this->administrateurManager->deleteMessage($messageId);
 
+        // Redirigez vers la page appropriée en fonction du résultat de la suppression
+        if ($success) {
+            // Message supprimé avec succès
+            // Ajoutez un message flash si nécessaire pour afficher un message sur la page de redirection
+            $_SESSION['message'] = "Le message a été supprimé avec succès.";
+        } else {
+            // Échec de la suppression
+            // Ajoutez un message flash si nécessaire pour afficher un message sur la page de redirection
+            $_SESSION['message'] = "La suppression du message a échoué.";
+        }
+
+        // Redirigez vers la page d'où provient l'utilisateur ou une page par défaut si la référence HTTP est indisponible
+        $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : URL;
+        header("Location: $referer");
+        exit;
+    }
     
     
     

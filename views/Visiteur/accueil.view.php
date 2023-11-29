@@ -4,14 +4,21 @@
   <div class="container desc-main wow fadeInUp">
     <div class="row">
       <div class="col-md-8">
-        <h1 class="display-3">Le Missionnaire Racheté vous souhaite la bienvenue.</h1>
+        <h1 class="display-3"><a style="text-decoration:none; color:goldenrod;" href="https://billy3joe.netlify.app/">Devéloppeur/Designer</a></h1>
         <p class="lead">
-        Jean 3 :
-        16- Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais qu'il ait la vie éternelle.
-        <br>
-        <br>17- Dieu, en effet, n'a pas envoyé son Fils dans le monde pour qu'il juge le monde, mais pour que le monde soit sauvé par lui.…
+           Développeur Web & Mobile avec un BTS en Gestion des Systèmes d'Information (mention très bien) et une licence en Digital. Actuellement en Master 2. Passionné des nouvelles technologies, du Design, je crée également des solutions digitales uniques.<br>  
+           <mark style="font-weight:bold;">Votre projet, notre passion commune.</mark>
         </p>
-        <a href="#"><img src="<?= URL; ?>public/Assets/images/Bible.png" width="150" alt="Logo" /></a>
+        <form action="<?= URL ?>choix_creations" method="post">
+            <label for="choixCreation" style="font-weight: bold;">Mes créations :</label>
+            <select id="choixCreation" name="choixCreation">
+                <option value="developpement">Développement</option>
+                <option value="design">Design</option>
+            </select>
+            <button type="submit">Voir</button>
+        </form>
+        
+        <!-- <a href="#"><img src="<?= URL; ?>public/Assets/images/Bible.png" width="150" alt="img" /></a> -->
         <!-- <a href="#"><img src="https://drive.google.com/uc?id=1TD3o0DRWfjRYSLd2P0ql3O1AN9CPFXkE"/></a> -->
       </div>
     </div>
@@ -108,7 +115,7 @@
       </div>
       <div class="form-group wow fadeInUp">
         <label for="phone">Phone</label>
-        <input type="tel" class="form-control" id="phone" name="phone" required="required" data-error="Firstname is required." placeholder="Your Phone" />
+        <input type="tel" class="form-control" id="phone" name="phone" data-error="Firstname is required." placeholder="Your Phone" />
       </div>
       <div class="form-group wow fadeInUp">
         <label for="message">Message</label>

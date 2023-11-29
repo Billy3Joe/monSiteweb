@@ -45,5 +45,7 @@
             <script src="<?= URL?>public/JavaScript/<?= $fichier_javascript ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
+    <!-- Ajoutez jQuery à votre page si ce n'est pas déjà fait -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
 </html>
