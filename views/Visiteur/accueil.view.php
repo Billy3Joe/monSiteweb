@@ -4,7 +4,7 @@
   <div class="container desc-main wow fadeInUp">
     <div class="row">
       <div class="col-md-8">
-        <h1 class="display-3"><a style="text-decoration:none; color:goldenrod;" href="https://billy3joe.netlify.app/">Devéloppeur/Designer</a></h1>
+        <h1 class="display-3"><a style="text-decoration:none; color:goldenrod; font-size:40px;" href="https://billy3joe.netlify.app/">Devéloppeur/Webdesigner</a></h1>
         <p class="lead">
            Développeur Web & Mobile avec un BTS en Gestion des Systèmes d'Information (mention très bien) et une licence en Digital. Actuellement en Master 2. Passionné des nouvelles technologies, du Design, je crée également des solutions digitales uniques.<br>  
            <mark style="font-weight:bold;">Votre projet, notre passion commune.</mark>
@@ -25,15 +25,97 @@
   </div>
 </div>
 
-<!--Components-->
 <div class="container components" id="compo">
-  <div class="row">
-    <div class="col-md-4 wow fadeInLeft">
-      <h5>Share Something Meaningful With Your Loved Ones</h5>
+  <div class="row align-items-center">
+    <!-- Colonne de texte -->
+    <div class="col-md-8 wow fadeInLeft">
+      <h4 style="font-size: 50px;">Pourquoi Nous Choisir?</h4>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nihil reiciendis alias facilis aspernatur veniam eligendi, perspiciatis ducimus quasi!
+        Nous vous aidons à transformer les idées 
+        de votre entreprise en réalité en proposant
+        des solutions numériques telles que le développement 
+        de logiciels d'entreprise, le développement Web et le 
+        développement d'applications mobiles. Nous fournissons 
+        des services qui peuvent vous aider à transformer la vision 
+        de votre entreprise en réalité!
+  
+        À l’ère de la technologie, votre entreprise a besoin
+        de partenaires exceptionnels dotés d’une expérience 
+        de classe mondiale, d’une expertise internationale et 
+        d’un engagement sans précédent envers votre réussite. 
+        WTI est une équipe axée sur le client, abordable et 
+        dévouée qui aide les clients à inventer leur avenir.
+        Bienvenue dans l'expérience WTI!
       </p>
     </div>
+    
+    <!-- Colonne d'image -->
+    <div class="col-md-4 wow fadeInRight">
+      <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="logo" class="img-fluid" />
+    </div>
+  </div>
+
+    <div class="container components mt-1" id="compo">
+      <h4 class="text-center mb-4 display-2" style="font-weight: bold; font-size:50px;"><span class="underline-yellow">Nos Services</span></h4>
+      <div class="row">
+        <!-- Service 1 -->
+        <div class="col-md-3">
+          <h5 class="text-center">Solutions Web et d'entreprise</h5>
+          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
+            <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 1" class="img-fluid" />
+          </div>
+          <p class="text-center">
+             Nous aidons à alimenter la croissance 
+             de votre entreprise numérique avec la 
+             promesse d’améliorer l’évolutivité, en 
+             développant des sites Web d’entreprise 
+             à partir de zéro.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="col-md-3">
+          <h5 class="text-center">Application mobile</h5>
+          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
+            <<img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 2" class="img-fluid" />
+          </div>
+          <p class="text-center">
+             Nous proposons des expériences riches sur
+             petits écrans, ce qui facilite les opérations, 
+             l'engagement des consommateurs et le succès de 
+             votre entreprise.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="col-md-3">
+          <h5 class="text-center">Conception et stratégie Ui/Ux</h5>
+          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
+          <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 3" class="img-fluid" />
+          </div>
+          <p class="text-center">
+             Nous développons des designs réactifs
+             qui offrent une expérience utilisateur
+             exceptionnelle et un Interface utilisateur 
+             exceptionnelle.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="col-md-3">
+          <h5 class="text-center">Assurance qualité</h5>
+          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
+          <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 4" class="img-fluid" />
+          </div>
+          <p class="text-center">
+            Nous contribuons à créer des objectifs de qualité 
+            puis les évaluons pour améliorer la qualité du logiciel 
+            afin de satisfaire des critères de performance.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
     <div class="col-md-4 wow fadeInUp">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -41,18 +123,7 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" role="listbox">
-          <div class="carousel-item active">
-            <img class="d-block img-fluid watch"  src="<?= URL; ?>public/Assets/images/Bible.png" alt="First slide" />
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="col-md-4 wow fadeInRight">
-      <h5>Share Something Meaningful With Your Loved Ones</h5>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nihil reiciendis alias facilis aspernatur veniam eligendi, perspiciatis ducimus quasi!
-      </p>
     </div>
   </div>
 </div>
@@ -134,7 +205,7 @@
 <style>
   .header-bg {
   background: linear-gradient(to left, rgba(33, 33, 33, 0.27), rgb(33, 33, 33)),
-      url("public/Assets/images/img1.webp");
+      url("public/Assets/images/img1.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -151,4 +222,20 @@
   padding-bottom: 5rem;
   color: #fff;
   }
+
+  .underline-yellow {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+
+      .underline-yellow::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3px; /* Hauteur de la bordure */
+        background: linear-gradient(to right, transparent 10%, #ffc107 10%, #ffc107 90%, transparent 90%);
+      }
   </style>
