@@ -40,6 +40,15 @@ class VisiteurManager extends MainManager {
             echo '<div class="error-message">' . $e->getMessage() . '</div>';
         }
     }
+
+    //Fonction pour récupérer la liste de tous les utilisateurs enregistrés sur le site
+    public function getServices() {
+        $req = $this->getBdd()->prepare("SELECT * FROM service");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
 }
 
 // Créer une instance de VisiteurManager

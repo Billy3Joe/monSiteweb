@@ -82,6 +82,14 @@ class AdministrateurManager extends MainManager {
         return $result['nombre_messages'];
     }
     
+    //Fonction pour recupérer le nombre total des services que propose l'World Tech Innovation
+    public function getNombreServices() {
+        $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_services FROM service");
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $result['nombre_services'];
+    }
    
     public function deleteMessage($idMessage) {
         // Vérifiez si l'identifiant du message est valide

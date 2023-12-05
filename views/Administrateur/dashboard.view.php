@@ -42,9 +42,16 @@
         <div class="card total1">
           <div class="info">
             <div class="info-detail">
-              <h3>Revenue</h3>
-              <p>Lorem ipsem dolor</p>
-              <h2>1,873,250 <span>USD</span></h2>
+              <?php 
+                // Créer une instance de AdministrateurManager
+                $administrateurManager = new AdministrateurManager();
+                
+                // Récupérer le nombre total de services
+                $nombreServices = $administrateurManager->getNombreServices();
+                ?>
+                <h3>Services</h3>
+                <p>Reçus</p>
+                <h2><?php echo $nombreServices; ?> <span>Services</span></h2>
             </div>
             <div class="info-image"><i class="fas fa-money-check-alt"></i></div>
           </div>

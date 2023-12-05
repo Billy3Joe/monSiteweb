@@ -54,68 +54,22 @@
       <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="logo" class="img-fluid" />
     </div>
   </div>
-
-    <div class="container components mt-1" id="compo">
-      <h4 class="text-center mb-4 display-2" style="font-weight: bold; font-size:50px;"><span class="underline-yellow">Nos Services</span></h4>
-      <div class="row">
-        <!-- Service 1 -->
-        <div class="col-md-3">
-          <h5 class="text-center">Solutions Web et d'entreprise</h5>
-          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
-            <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 1" class="img-fluid" />
+  <div class="container components mt-1" id="compo">
+    <h4 class="text-center mb-4 display-2" style="font-weight: bold; font-size:50px;"><span class="underline-yellow">Nos Services</span></h4>
+    <div class="row">
+        <?php foreach ($services as $service) : ?>
+            <!-- Service -->
+            <div class="col-md-3">
+                <h5 class="text-center"><?php echo $service["title"] ?></h5>
+                <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
+                    <img src="<?= URL; ?>public/Assets/images/<?= $service['image'] ?>" alt="Service" class="img-fluid" />
+                </div>
+                <p class="text-center"><?php echo $service["description"] ?></p>
+            </div>
+              <?php endforeach; ?>
           </div>
-          <p class="text-center">
-             Nous aidons à alimenter la croissance 
-             de votre entreprise numérique avec la 
-             promesse d’améliorer l’évolutivité, en 
-             développant des sites Web d’entreprise 
-             à partir de zéro.
-          </p>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="col-md-3">
-          <h5 class="text-center">Application mobile</h5>
-          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
-            <<img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 2" class="img-fluid" />
-          </div>
-          <p class="text-center">
-             Nous proposons des expériences riches sur
-             petits écrans, ce qui facilite les opérations, 
-             l'engagement des consommateurs et le succès de 
-             votre entreprise.
-          </p>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="col-md-3">
-          <h5 class="text-center">Conception et stratégie Ui/Ux</h5>
-          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
-          <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 3" class="img-fluid" />
-          </div>
-          <p class="text-center">
-             Nous développons des designs réactifs
-             qui offrent une expérience utilisateur
-             exceptionnelle et un Interface utilisateur 
-             exceptionnelle.
-          </p>
-        </div>
-
-        <!-- Service 4 -->
-        <div class="col-md-3">
-          <h5 class="text-center">Assurance qualité</h5>
-          <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
-          <img src="<?= URL; ?>public/Assets/images/monLogo.png" alt="Service 4" class="img-fluid" />
-          </div>
-          <p class="text-center">
-            Nous contribuons à créer des objectifs de qualité 
-            puis les évaluons pour améliorer la qualité du logiciel 
-            afin de satisfaire des critères de performance.
-          </p>
-        </div>
       </div>
-    </div>
- 
+
     <div class="col-md-4 wow fadeInUp">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
