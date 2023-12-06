@@ -5,11 +5,11 @@ class AdministrateurManager extends MainManager {
     
     //Fonction pour récupérer le nombre total des utilisateurs enregistrés sur le site
     public function getNombreUtilisateurs() {
-        $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_messages FROM utilisateur");
+        $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_utilisateurs FROM utilisateur");
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
-        return $result['nombre_utilisateur'];
+        return $result['nombre_utilisateurs'];
     }
 
     //Fonction pour récupérer la liste de tous les utilisateurs enregistrés sur le site
@@ -31,15 +31,7 @@ class AdministrateurManager extends MainManager {
         $stmt->closeCursor();
         return $utilisateur;
     }
-
-      //Fonction pour recupérer le nombre total des messages reçuspar les utilisateurs
-      public function getNombreUtilisateur() {
-        $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_utilisateurs FROM utilisateur");
-        $req->execute();
-        $result = $req->fetch(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-        return $result['nombre_utilisateurs'];
-    }
+   
     
     //Fonction pour modifier le rôle d'un utilisateur
     public function modifierRoleUtilisateur($id, $nouveauRole) {
@@ -82,13 +74,33 @@ class AdministrateurManager extends MainManager {
         return $result['nombre_messages'];
     }
     
-    //Fonction pour recupérer le nombre total des services que propose l'World Tech Innovation
-    public function getNombreServices() {
+     //Fonction pour recupérer le nombre total de services
+     public function getNombreServices() {
         $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_services FROM service");
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $result['nombre_services'];
+    }
+
+    //Fonction pour récupérer la liste de tous les services 
+    public function getServices() {
+        $req = $this->getBdd()->prepare("SELECT * FROM service");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
+    
+    //Fonction pour recupérer un service par son id
+    public function getServiceById($id) {
+        $req = "SELECT * FROM service WHERE id = :id";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $service = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $service;
     }
    
     public function deleteMessage($idMessage) {

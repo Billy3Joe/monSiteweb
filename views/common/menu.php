@@ -65,6 +65,15 @@
                 </li>
             <!-- Fin de la condition -->
             <?php endif; ?>
+
+            <!-- Condition : Si l'utilisateur est connecté et est administrateur -->
+            <?php if(Securite::estConnecte() && Securite::estAdministrateur()) : ?>
+                <!-- Dropdown pour les liens d'administration -->
+                <li class="nav-item">
+                   <a class="nav-link" aria-current="page" href="<?= URL; ?>services">Services</a>
+                </li>
+            <!-- Fin de la condition -->
+            <?php endif; ?>
         </ul>
     </div>
   </div>

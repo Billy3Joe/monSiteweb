@@ -179,13 +179,13 @@ try {
                         }
                     break;
                     default : throw new Exception("La page n'existe pas");
-                }
             }
-            break;
+        }
+        break;
 
 
-        // Régénération du cookie de connexion
-        Securite::genererCookieConnexion();
+            // Régénération du cookie de connexion
+            Securite::genererCookieConnexion();
             // Gestion des pages liées à l'administration
             case "dashboard" : $administrateurController->dashboard();
             break;
@@ -208,60 +208,62 @@ try {
                     header("Location: " . URL . "accueil");
                 }
                 break;
-                // Ajoutez une nouvelle case pour "toggle_user_status"
-                case "toggle_user_status":
-                    // Vérifie si l'ID de l'utilisateur est présent dans l'URL
-                    if (!empty($url[1])) {
-                        $administrateurController->toggleUserStatus($url[1]);
-                    } else {
-                        // Redirige vers la page d'accueil si l'ID n'est pas spécifié
-                        header("Location: " . URL . "accueil");
-                    }
-                    break;
-                   // Ajoutez une nouvelle route pour la suppression
-                    case "delete_message_user":
-                        // Vérifiez si l'identifiant du message à supprimer est présent dans la requête POST
-                        if (!empty($_POST['id'])) {
-                            // Appellez la méthode de suppression dans votre modèle
-                            $success = $AdministrateurManager->deleteMessage($_POST['id']);
+            // Ajoutez une nouvelle case pour "toggle_user_status"
+            case "toggle_user_status":
+                // Vérifie si l'ID de l'utilisateur est présent dans l'URL
+                if (!empty($url[1])) {
+                    $administrateurController->toggleUserStatus($url[1]);
+                } else {
+                    // Redirige vers la page d'accueil si l'ID n'est pas spécifié
+                    header("Location: " . URL . "accueil");
+                }
+                break;
+                // Ajoutez une nouvelle route pour la suppression
+                case "delete_message_user":
+                    // Vérifiez si l'identifiant du message à supprimer est présent dans la requête POST
+                    if (!empty($_POST['id'])) {
+                        // Appellez la méthode de suppression dans votre modèle
+                        $success = $AdministrateurManager->deleteMessage($_POST['id']);
 
-                            // Retournez une réponse appropriée (par exemple, en JSON)
-                            if ($success) {
-                                echo json_encode(["success" => true]);
-                            } else {
-                                echo json_encode(["success" => false, "error" => "Une erreur s'est produite lors de la suppression du message."]);
+                        // Retournez une réponse appropriée (par exemple, en JSON)
+                        if ($success) {
+                            echo json_encode(["success" => true]);
+                        } else {
+                            echo json_encode(["success" => false, "error" => "Une erreur s'est produite lors de la suppression du message."]);
+                        }
+                    } else {
+                        // L'identifiant du message n'est pas spécifié dans la requête
+                        echo json_encode(["success" => false, "error" => "Identifiant du message manquant dans la requête."]);
+                    }
+                    // Assurez-vous de quitter ici pour éviter que d'autres choses ne soient envoyées dans la réponse
+                    exit;
+
+                    case "choix_creations":
+                        // Vérifie si le choix de l'utilisateur est présent dans la requête POST
+                        if (!empty($_POST['choixCreation'])) {
+                            $choix = Securite::secureHTML($_POST['choixCreation']);
+                            // Redirige l'utilisateur en fonction de son choix
+                            if ($choix === "developpement") {
+                                header("Location: " . URL . "developpement");
+                            } elseif ($choix === "design") {
+                                header("Location: " . URL . "design");
                             }
                         } else {
-                            // L'identifiant du message n'est pas spécifié dans la requête
-                            echo json_encode(["success" => false, "error" => "Identifiant du message manquant dans la requête."]);
+                            // Le choix de l'utilisateur n'est pas spécifié dans la requête
+                            // Vous pouvez rediriger l'utilisateur vers une page d'erreur ou faire une autre action
                         }
-                        // Assurez-vous de quitter ici pour éviter que d'autres choses ne soient envoyées dans la réponse
-                        exit;
-
-                        case "choix_creations":
-                            // Vérifie si le choix de l'utilisateur est présent dans la requête POST
-                            if (!empty($_POST['choixCreation'])) {
-                                $choix = Securite::secureHTML($_POST['choixCreation']);
-                                // Redirige l'utilisateur en fonction de son choix
-                                if ($choix === "developpement") {
-                                    header("Location: " . URL . "developpement");
-                                } elseif ($choix === "design") {
-                                    header("Location: " . URL . "design");
-                                }
-                            } else {
-                                // Le choix de l'utilisateur n'est pas spécifié dans la requête
-                                // Vous pouvez rediriger l'utilisateur vers une page d'erreur ou faire une autre action
-                            }
-                            break;   
+                        break;   
                             
-                            case "developpement":
-                                $visiteurController->creationsDeveloppement();
-                                break;
-                            
-                            case "design":
-                                $visiteurController->creationsDesign();
-                                break;
-                            
+                        case "developpement":
+                            $visiteurController->creationsDeveloppement();
+                            break;
+                        
+                        case "design":
+                            $visiteurController->creationsDesign();
+                            break;
+                          // Gestion des pages liées à l'administration
+                        case "services" : $administrateurController->services();
+                        break;
 
         default:
             throw new Exception("La page n'existe pas");

@@ -83,11 +83,10 @@
                 $administrateurManager = new AdministrateurManager();
                 
                 // Récupérer le nombre total de messages
-                $nombreUtilisateurs = $administrateurManager->getNombreUtilisateur();
+                $nombreUtilisateurs = $administrateurManager->getNombreUtilisateurs();
                 ?>
-              <h3>Utilisateurs</h3>
               <p>Nombre</p>
-              <h2><?php echo $nombreUtilisateurs; ?> <span>Utilisateurs</span></h2>
+              <h2><?php echo $nombreUtilisateurs;?> <span>Utilisateurs</span></h2>
             </div>
             <div class="info-image"><i class="fas fa-user-friends"></i></div>
           </div>
