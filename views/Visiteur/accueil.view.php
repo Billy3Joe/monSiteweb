@@ -1,5 +1,4 @@
 <!-- <h1>Page d'accueil</h1> -->
-
 <div class="container-fluid header-bg" id="home">
   <div class="container desc-main wow fadeInUp">
     <div class="row">

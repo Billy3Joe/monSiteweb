@@ -103,6 +103,18 @@ class AdministrateurManager extends MainManager {
         return $service;
     }
    
+    public function addService($title, $image, $description) {
+        $req = $this->getBdd()->prepare("INSERT INTO service (title, image, description) VALUES (:title, :image, :description)");
+        $req->execute([
+            ':title' => $title,
+            ':image' => $image,
+            ':description' => $description
+        ]);
+        $req->closeCursor();
+    }
+    
+
+
     public function deleteMessage($idMessage) {
         // Vérifiez si l'identifiant du message est valide
         if (is_numeric($idMessage)) {

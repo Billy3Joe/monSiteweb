@@ -6,15 +6,14 @@
             <th>Image</th>
             <th>Description</th>
             <th>Action</th>
-             <!-- Bouton Supprimer avec lien vers la page de modification -->
-             <a href="<?= URL ?>Ajouter_data_service" class="btn btn-success">Ajouter un service</a>
+             <a href="<?= URL ?>form_add_service" class="btn btn-success">Ajouter un service</a>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($services as $service) : ?>
             <tr>
                 <td><?= $service['title'] ?></td>
-                <td> <img class="customer-image" src="<?= URL; ?>public/Assets/images/services<?= $service['image'] ?>" width="100px" alt="Image du service" /></td>
+                <td><img class="customer-image" src="<?= URL; ?>public/Assets/images/<?= $service['image'] ?>" width="100px" alt="Image du service" /></td>
                 <td><?= $service['description'] ?></td>
                 <td>
                     <!-- Bouton Modifier avec lien vers la page de modification -->

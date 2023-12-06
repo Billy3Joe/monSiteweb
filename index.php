@@ -261,10 +261,17 @@ try {
                         case "design":
                             $visiteurController->creationsDesign();
                             break;
-                          // Gestion des pages liées à l'administration
+
                         case "services" : $administrateurController->services();
                         break;
 
+                        case "form_add_service" : $administrateurController->add_data_service();
+                        break;
+
+                        
+            
+                       
+                      
         default:
             throw new Exception("La page n'existe pas");
     }
