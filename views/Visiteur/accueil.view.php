@@ -61,7 +61,7 @@
             <div class="col-md-3">
                 <h5 class="text-center"><?php echo $service["title"] ?></h5>
                 <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px; border: 2px solid  #ffc107;">
-                    <img src="<?= URL; ?>public/Assets/images/<?= $service['image'] ?>" alt="Service" class="img-fluid" />
+                  <img class="customer-image" src="<?= $service['image'] ?>" width="100px" alt="Mes services" />
                 </div>
                 <p class="text-center"><?php echo $service["description"] ?></p>
             </div>

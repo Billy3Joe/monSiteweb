@@ -103,15 +103,17 @@ class AdministrateurManager extends MainManager {
         return $service;
     }
    
-    public function addService($title, $image, $description) {
-        $req = $this->getBdd()->prepare("INSERT INTO service (title, image, description) VALUES (:title, :image, :description)");
-        $req->execute([
-            ':title' => $title,
-            ':image' => $image,
-            ':description' => $description
-        ]);
-        $req->closeCursor();
+    public function addService($title, $imagePath, $description) {
+        // ... votre logique pour ajouter le service à la base de données
+        // Assurez-vous que le chemin stocké dans la base de données inclut le préfixe "Assets/images/"
+        $query = "INSERT INTO service (title, image, description) VALUES (:title, :image, :description)";
+        $stmt = $this->getBdd()->prepare($query);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':image', $imagePath);
+        $stmt->bindParam(':description', $description);
+        $stmt->execute();
     }
+    
     
 
 

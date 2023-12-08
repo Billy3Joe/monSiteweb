@@ -13,7 +13,7 @@
         <?php foreach ($services as $service) : ?>
             <tr>
                 <td><?= $service['title'] ?></td>
-                <td><img class="customer-image" src="<?= URL; ?>public/Assets/images/<?= $service['image'] ?>" width="100px" alt="Image du service" /></td>
+                <td><img class="customer-image" src="<?= $service['image'] ?>" width="100px" alt="Image du service" /></td>
                 <td><?= $service['description'] ?></td>
                 <td>
                     <!-- Bouton Modifier avec lien vers la page de modification -->

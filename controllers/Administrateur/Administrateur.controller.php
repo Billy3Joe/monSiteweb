@@ -130,40 +130,40 @@ class AdministrateurController extends MainController {
     public function add_data_service() {
         // Initialiser le message à vide
         $message = "";
-
+    
+        // Définissez le chemin vers le dossier d'images
+        $uploadDir = "public/Assets/images/";
+    
         // Si le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérez les données du formulaire
             $title = htmlspecialchars($_POST['title']);
             $image = $_FILES['image']; // Utilisez $_FILES pour les fichiers
             $description = htmlspecialchars($_POST['description']);
-
+    
             // Traiter l'upload de l'image et obtenir le chemin final
             $imagePath = $this->handleImageUpload($image);
-
+    
             // Ajoutez le service à la base de données
             $this->administrateurManager->addService($title, $imagePath, $description);
-
+    
             // Définissez le message de confirmation
             $message = "Le service a été ajouté avec succès!";
-
-            // Après avoir traité le formulaire, effectuez la redirection
-            // header('Location: ' . URL . 'form_add_service');
-            // exit;
         }
-
+    
         // Définissez les données de la page
         $data_page = [
             "page_description" => "Description de la page Ajout service",
             "page_title" => "Titre de la page Ajout service",
             "message" => $message,
+            "uploadDir" => $uploadDir,  // Ajoutez cette ligne
             "view" => "views/Administrateur/form_add_service.view.php",
             "template" => "views/common/template.php",
         ];
-
+    
         // Générez la page
         $this->genererPage($data_page);
-    }
+    }    
 
     // Fonction pour traiter l'upload de l'image
     private function handleImageUpload($image) {
@@ -201,7 +201,7 @@ class AdministrateurController extends MainController {
         // Déplacez le fichier
         if (move_uploaded_file($image['tmp_name'], $imagePath)) {
             // Utilisez un chemin relatif pour stocker dans la base de données
-            $relativeImagePath = "Assets/images/" . $imageName;
+            $relativeImagePath = "public/Assets/images/" . $imageName;
             return $relativeImagePath;
         } else {
             // Gérez l'erreur si le déplacement échoue
