@@ -280,7 +280,7 @@ try {
                         case "webSolutions" : $administrateurController->webSolutions();
                         break;
 
-                        case "form_add_webSolutions" : $administrateurController->add_data_webSolutions();
+                        case "form_add_webSolution" : $administrateurController->add_data_webSolutions();
                         break;
                        
                       
