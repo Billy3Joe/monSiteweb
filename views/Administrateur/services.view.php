@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>  
-                <th>Nom du service</th>
+                <th>Service</th>
                 <th>Image</th>
                 <th>Description</th>
                 <th>Action</th>

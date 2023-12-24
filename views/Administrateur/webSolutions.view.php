@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>  
-                <th>Nom de la solution web</th>
+                <th>Solution web</th>
                 <th>Image</th>
                 <th>Description</th>
                 <th>Action</th>
