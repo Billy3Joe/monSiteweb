@@ -268,8 +268,20 @@ try {
                         case "form_add_service" : $administrateurController->add_data_service();
                         break;
 
+                        case "solutionsWeb" : $visiteurController->solutionsWeb();
+                        break;
+
+                        case "appMobile" : $visiteurController->appMobile();
+                        break;
+
+                        case "conceptionStrategie" : $visiteurController->conceptionStrategie();
+                        break;
                         
-            
+                        case "webSolutions" : $administrateurController->webSolutions();
+                        break;
+
+                        case "form_add_webSolutions" : $administrateurController->add_data_webSolutions();
+                        break;
                        
                       
         default:

@@ -79,6 +79,40 @@ class VisiteurController extends MainController {
         $this->genererPage($data_page);
     }
 
+    public function solutionsWeb()
+    {
+        $data_page = [
+            "page_description" => "Description de la page Solution Web",
+            "page_title" => "Titre de la page Solution Web",
+            "view" => "views/Visiteur/solutionsWeb.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function appMobile()
+    {
+        $data_page = [
+            "page_description" => "Description de la page Application Mobile",
+            "page_title" => "Titre de la page Application Mobile",
+            "view" => "views/Visiteur/appMobile.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function conceptionStrategie()
+    {
+        $data_page = [
+            "page_description" => "Description de la page Conception Stratégie",
+            "page_title" => "Titre de la page Solution Conception Strategie",
+            "view" => "views/Visiteur/conceptionStrategie.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+
 
     public function pageErreur($message){
         parent::pageErreur($message);

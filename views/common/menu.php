@@ -1,80 +1,80 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <!-- Barre de navigation responsive Bootstrap -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Liste des liens de navigation -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <!-- Lien vers la page d'accueil -->
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="<?= URL; ?>accueil">Accueil</a>
-            </li>
-            
-            <!-- Condition : Si l'utilisateur n'est pas connecté -->
-            <?php if(empty($_SESSION['profil'])) : ?>
-                <!-- Lien vers la page de connexion -->
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<?= URL; ?>login">Se connecter</a>
+                    <a class="nav-link" aria-current="page" href="<?= URL; ?>accueil">Accueil</a>
                 </li>
-                
-                <!-- Lien vers la page de création de compte -->
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<?= URL; ?>creerCompte">Créer compte</a>
+                <!-- Ajout d'un lien "Services" avec un dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <a class="dropdown-item" href="<?= URL; ?>solutionsWeb">Solutions Web et d'entreprise</a>
+                        <a class="dropdown-item" href="<?= URL; ?>appMobile">Application mobile</a>
+                        <a class="dropdown-item" href="<?= URL; ?>conceptionStrategie">Conception et stratégie Ui/Ux</a>
+                        <a class="dropdown-item" href="<?= URL; ?>assuranceQualite">Assurance qualité</a>
+                        <!-- Ajoutez d'autres éléments du dropdown au besoin -->
+                    </div>
                 </li>
-            
-            <!-- Sinon (l'utilisateur est connecté) -->
-            <?php else : ?>
-                <!-- Lien vers la page du profil de l'utilisateur -->
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/profil">Profil</a>
+                <!-- Ajout d'un lien "Technologies" avec un dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="technologiesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Technologies
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="technologiesDropdown">
+                        <a class="dropdown-item" href="<?= URL; ?>technologie">Backend Technologies</a>
+                        <a class="dropdown-item" href="<?= URL; ?>technologie">Frontend Technomogies</a>
+                        <a class="dropdown-item" href="<?= URL; ?>technologie">Mobile Technomogies</a>
+                        <a class="dropdown-item" href="<?= URL; ?>technologie">E-Commerce & CMS Technomogies</a>
+                        <!-- Ajoutez d'autres éléments du dropdown au besoin -->
+                    </div>
                 </li>
-                
-                <!-- Lien pour se déconnecter -->
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/deconnexion">Se déconnecter</a>
-                </li>
-            
-            <!-- Fin de la condition -->
-            <?php endif; ?>
-            
-            <!-- Condition : Si l'utilisateur est connecté et est administrateur -->
-            <?php if(Securite::estConnecte() && Securite::estAdministrateur()) : ?>
-                <!-- Dropdown pour les liens d'administration -->
-                <li class="nav-item">
-                   <a class="nav-link" aria-current="page" href="<?= URL; ?>dashboard">Dashboard</a>
-                </li>
-            <!-- Fin de la condition -->
-            <?php endif; ?>
-
-            <!-- Condition : Si l'utilisateur est connecté et est administrateur -->
-            <?php if(Securite::estConnecte() && Securite::estAdministrateur()) : ?>
-                <!-- Dropdown pour les liens d'administration -->
-                <li class="nav-item">
-                   <a class="nav-link" aria-current="page" href="<?= URL; ?>users">Utilisateurs</a>
-                </li>
-            <!-- Fin de la condition -->
-            <?php endif; ?>
-
-             <!-- Condition : Si l'utilisateur est connecté et est administrateur -->
-             <?php if(Securite::estConnecte() && Securite::estAdministrateur()) : ?>
-                <!-- Dropdown pour les liens d'administration -->
-                <li class="nav-item">
-                   <a class="nav-link" aria-current="page" href="<?= URL; ?>messages">Messages</a>
-                </li>
-            <!-- Fin de la condition -->
-            <?php endif; ?>
-
-            <!-- Condition : Si l'utilisateur est connecté et est administrateur -->
-            <?php if(Securite::estConnecte() && Securite::estAdministrateur()) : ?>
-                <!-- Dropdown pour les liens d'administration -->
-                <li class="nav-item">
-                   <a class="nav-link" aria-current="page" href="<?= URL; ?>services">Services</a>
-                </li>
-            <!-- Fin de la condition -->
-            <?php endif; ?>
-        </ul>
+                <!-- Condition et liens pour la connexion et le compte utilisateur -->
+                <?php if(empty($_SESSION['profil'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>login">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>creerCompte">Créer compte</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/profil">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/deconnexion">Se déconnecter</a>
+                    </li>
+                <?php endif; ?>
+                <!-- Condition pour l'administration -->
+                <?php if(Securite::estConnecte() && Securite::estAdministrateur()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>users">Utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>messages">Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>webSolutions">Solutions Web</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+            <!-- Le reste de votre menu -->
+        </div>
     </div>
-  </div>
 </nav>
+
+<!-- Votre contenu de page va ici -->
+
+</body>
+</html>

@@ -142,7 +142,7 @@ class AdministrateurController extends MainController {
             $description = htmlspecialchars($_POST['description']);
     
             // Traiter l'upload de l'image et obtenir le chemin final
-            $imagePath = $this->handleImageUpload($image);
+            $imagePath = $this->handleImageUploadService($image);
     
             // Ajoutez le service à la base de données
             $this->administrateurManager->addService($title, $imagePath, $description);
@@ -153,8 +153,8 @@ class AdministrateurController extends MainController {
     
         // Définissez les données de la page
         $data_page = [
-            "page_description" => "Description de la page Ajout service",
-            "page_title" => "Titre de la page Ajout service",
+            "page_description" => "Description de la page ajout service",
+            "page_title" => "Titre de la page ajout service",
             "message" => $message,
             "uploadDir" => $uploadDir,  // Ajoutez cette ligne
             "view" => "views/Administrateur/form_add_service.view.php",
@@ -165,8 +165,8 @@ class AdministrateurController extends MainController {
         $this->genererPage($data_page);
     }    
 
-    // Fonction pour traiter l'upload de l'image
-    private function handleImageUpload($image) {
+    // Fonction pour traiter l'upload de l'image service
+    private function handleImageUploadService($image) {
         // Vérifiez s'il y a des erreurs lors de l'upload
         if ($image['error'] !== UPLOAD_ERR_OK) {
             // Gérez l'erreur selon vos besoins
@@ -188,7 +188,7 @@ class AdministrateurController extends MainController {
         }
     
         // Déplacez le fichier temporaire vers un emplacement permanent
-        $uploadDir = "public/Assets/images/";
+        $uploadDir = "public/Assets/images/services/";
     
         // Vérifiez si le dossier de destination existe, sinon créez-le
         if (!file_exists($uploadDir)) {
@@ -201,7 +201,7 @@ class AdministrateurController extends MainController {
         // Déplacez le fichier
         if (move_uploaded_file($image['tmp_name'], $imagePath)) {
             // Utilisez un chemin relatif pour stocker dans la base de données
-            $relativeImagePath = "public/Assets/images/" . $imageName;
+            $relativeImagePath = "public/Assets/images/services/" . $imageName;
             return $relativeImagePath;
         } else {
             // Gérez l'erreur si le déplacement échoue
@@ -226,4 +226,99 @@ class AdministrateurController extends MainController {
     public function pageErreur($msg){
         parent::pageErreur($msg);
     }
+
+    public function webSolutions() {
+        $webSolutions = $this->administrateurManager->getWebSolutions();
+        $data_page = [
+            "page_description" => "Description de la page solution web",
+            "page_title" => "Titre de la page solution web",
+            "webSolutions" => $webSolutions,
+            "view" => "views/Administrateur/webSolutions.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function add_data_webSolutions() {
+        // Initialiser le message à vide
+        $message = "";
+    
+        // Définissez le chemin vers le dossier d'images
+        $uploadDir = "public/Assets/images/";
+    
+        // Si le formulaire est soumis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupérez les données du formulaire
+            $title = htmlspecialchars($_POST['title']);
+            $image = $_FILES['image']; // Utilisez $_FILES pour les fichiers
+            $description = htmlspecialchars($_POST['description']);
+    
+            // Traiter l'upload de l'image et obtenir le chemin final
+            $imagePath = $this->handleImageUploadWebSolutions($image);
+    
+            // Ajoutez le service à la base de données
+            $this->administrateurManager->addSolutionWeb($title, $imagePath, $description);
+    
+            // Définissez le message de confirmation
+            $message = "Le solution web a été ajouté avec succès!";
+        }
+    
+        // Définissez les données de la page
+        $data_page = [
+            "page_description" => "Description de la page ajout solutions web",
+            "page_title" => "Titre de la page ajout solutions web",
+            "message" => $message,
+            "uploadDir" => $uploadDir,  // Ajoutez cette ligne
+            "view" => "views/Administrateur/form_add_webSolution.view.php",
+            "template" => "views/common/template.php",
+        ];
+    
+        // Générez la page
+        $this->genererPage($data_page);
+    }    
+
+     // Fonction pour traiter l'upload de l'image service
+     private function handleImageUploadWebSolutions($image) {
+        // Vérifiez s'il y a des erreurs lors de l'upload
+        if ($image['error'] !== UPLOAD_ERR_OK) {
+            // Gérez l'erreur selon vos besoins
+            die("Erreur lors de l'upload de l'image");
+        }
+    
+        // Vérifiez l'extension du fichier
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $imageExtension = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+    
+        if (!in_array($imageExtension, $allowedExtensions)) {
+            die("L'extension du fichier n'est pas autorisée. Seules les extensions JPG, JPEG, PNG, et GIF sont autorisées.");
+        }
+    
+        // Vérifiez la taille du fichier
+        $maxFileSize = 5 * 1024 * 1024; // 5 Mo
+        if ($image['size'] > $maxFileSize) {
+            die("La taille du fichier dépasse la limite autorisée. La taille maximale autorisée est de 5 Mo.");
+        }
+    
+        // Déplacez le fichier temporaire vers un emplacement permanent
+        $uploadDir = "public/Assets/images/webSolutions/";
+    
+        // Vérifiez si le dossier de destination existe, sinon créez-le
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true); // Créez le dossier récursivement avec des permissions élevées (à ajuster selon les besoins)
+        }
+    
+        $imageName = uniqid() . "_" . $image['name'];
+        $imagePath = $uploadDir . $imageName;
+    
+        // Déplacez le fichier
+        if (move_uploaded_file($image['tmp_name'], $imagePath)) {
+            // Utilisez un chemin relatif pour stocker dans la base de données
+            $relativeImagePath = "public/Assets/images/webSolutions/" . $imageName;
+            return $relativeImagePath;
+        } else {
+            // Gérez l'erreur si le déplacement échoue
+            die("Erreur lors du déplacement de l'image vers l'emplacement permanent");
+        }
+    }
+    
 }
