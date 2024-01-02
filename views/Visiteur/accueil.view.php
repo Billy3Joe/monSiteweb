@@ -83,42 +83,53 @@
 
 <main class="wrapper">
   <section class="breweries" id="breweries">
-    <ul>
-      <li>
-        <figure>
-          <!-- Photo by Quentin Dr on Unsplash -->
-          <img src="https://images.unsplash.com/photo-1471421298428-1513ab720a8e" alt="Several hands holding beer glasses">
-          <figcaption><h3>Billions upon billions</h3></figcaption>
-        </figure>
-        <p>
-          Made in the interiors of collapsing stars star stuff harvesting star light venture billions upon billions Drake Equation brain is the seed of intelligence?
-        </p>
-        <a class="linkCard" href="#">Visit Website</a>
-      </li>
-      <li>
-        <figure>
-          <!-- Photo by Drew Farwell on Unsplash -->
-          <img src="https://images.unsplash.com/photo-1513309914637-65c20a5962e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3450&q=80" alt="Several friends doing a toast">
-          <figcaption><h3>Drake Equation</h3></figcaption>
-        </figure>
-        <p>
-          Another world citizens of distant epochs from which we spring descended from astronomers Orion's sword shores of the cosmic ocean.
-        </p>
-        <a class="linkCard" href="#">Visit Website</a>
-      </li>
-      <li>
-        <figure>
-          <!-- Photo by Rawpixel on Unsplash -->
-          <img src="https://images.unsplash.com/photo-1535359056830-d4badde79747?ixlib=rb-1.2.1&auto=format&fit=crop&w=3402&q=80" alt="Three different glasses of beer">
-          <figcaption><h3>Vast cosmic arena</h3></figcaption>
-        </figure>
-        <p>
-          Galaxies the ash of stellar alchemy prime number science inconspicuous motes of rock and gas brain is the seed of intelligence.
-        </p>
-        <a class="linkCard" href="#">Visit Website</a>
-      </li>
-    </ul>
+    <div style="background-color: #f7f7f7 !important;">
+      <h4 class="text-center mb-4 display-2" style="font-weight: bold; font-size:50px;"><span class="underline-yellow">Travail en vedette</span></h4>
+      <p class="text-center">Des expériences qui comptent</p>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+          <?php foreach ($experiences as $experience) : ?>
+              <div class="col-md-4 mb-4">
+                  <div class="card">
+                      <img src="<?php echo $experience['image']; ?>" class="card-img-top" alt="<?php echo $experience['title']; ?>">
+                      <div class="card-body">
+                          <h5 class="card-title"><?php echo $experience['title']; ?></h5>
+                          <p class="card-text"><?php echo $experience['categorie']; ?></p>
+                          <a href="<?php echo $experience['lien']; ?>" class="btn btn-primary">View Details</a>
+                      </div>
+                  </div>
+              </div>
+          <?php endforeach; ?>
+      </div>
+   </div>
   </section>
+
+  <div class="container components mt-1" id="compo">
+    <h4 class="text-center mb-4 display-2" style="font-weight: bold; font-size:50px;"><span class="underline-yellow">Témoignages</span></h4>
+    <div class="row">
+        <?php foreach ($testimonials as $testimonial) : ?>
+            <!-- Service -->
+            <div class="col-md-4">
+                <p class="text-center"><?php echo $testimonial["nom"] ?></p>
+                <h5 class="text-center"><?php echo $testimonial["entreprise"] ?></h5>
+                <p class="text-center"><?php echo $testimonial["details"] ?></p>
+            </div>
+              <?php endforeach; ?>
+          </div>
+      </div>
+
+    <div class="col-md-4 wow fadeInUp">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+      </div>
+    </div>
+  </div>
 </main>
 
 <!--CONTACT-->

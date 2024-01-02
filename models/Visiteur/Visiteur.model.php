@@ -49,6 +49,22 @@ class VisiteurManager extends MainManager {
         $req->closeCursor();
         return $datas;
     }
+
+    public function getTestimonials() {
+        $req = $this->getBdd()->prepare("SELECT * FROM temoignages");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
+
+    public function getExperiences() {
+        $req = $this->getBdd()->prepare("SELECT * FROM experiences");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
 }
 
 // Créer une instance de VisiteurManager

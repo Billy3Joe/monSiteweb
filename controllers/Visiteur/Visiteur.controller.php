@@ -16,10 +16,14 @@ class VisiteurController extends MainController {
         // Toolbox::ajouterMessageAlerte("test2", Toolbox::COULEUR_ORANGE);
         // Toolbox::ajouterMessageAlerte("test3", Toolbox::COULEUR_ROUGE);
         $services = $this->visiteurManager->getServices();
+        $testimonials = $this->visiteurManager->getTestimonials();
+        $experience = $this->visiteurManager->getExperiences();
         $data_page = [
             "page_description" => "Description de la page d'accueil",
             "page_title" => "Titre de la page d'accueil",
             "services" => $services,
+            "testimonials" => $testimonials,
+            "experiences" => $experience,
             "view" => "views/Visiteur/accueil.view.php",
             "template" => "views/common/template.php",
         ];
