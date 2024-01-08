@@ -25,6 +25,6 @@
         </div>
 
         <!-- Utilisez un bouton submit pour soumettre le formulaire -->
-        <button type="submit" class="btn btn-success">Ajouter un service</button>
+        <button type="submit" class="btn btn-success">Validez</button>
     </form>
 </div>

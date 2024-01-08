@@ -106,14 +106,46 @@ class AdministrateurManager extends MainManager {
     public function addService($title, $imagePath, $description) {
         // ... votre logique pour ajouter le service à la base de données
         // Assurez-vous que le chemin stocké dans la base de données inclut le préfixe "Assets/images/"
-        $query = "INSERT INTO service (title, image, description) VALUES (:title, :image, :description)";
+        $query = "INSERT INTO service (title, image, description, link_customer) VALUES (:title, :image, :description, :link_customer)";
         $stmt = $this->getBdd()->prepare($query);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':image', $imagePath);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':link_customer', $description);
         $stmt->execute();
     }
 
+      //Fonction pour récupérer la liste de tous les experiences 
+      public function getExperiences() {
+        $req = $this->getBdd()->prepare("SELECT * FROM experiences");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
+
+       //Fonction pour recupérer une experience par son id
+       public function getExperienceById($id) {
+        $req = "SELECT * FROM experiences WHERE id = :id";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $experience = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $experience;
+    }
+   
+    public function addExperience($title, $imagePath, $description, $link_customer) {
+        // ... votre logique pour ajouter le service à la base de données
+        // Assurez-vous que le chemin stocké dans la base de données inclut le préfixe "Assets/images/"
+        $query = "INSERT INTO experiences (title, image, description, link_customer) VALUES (:title, :image, :description, :link_customer)";
+        $stmt = $this->getBdd()->prepare($query);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':image', $imagePath);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':link_customer', $link_customer);
+        $stmt->execute();
+    }
     
     public function deleteMessage($idMessage) {
         // Vérifiez si l'identifiant du message est valide

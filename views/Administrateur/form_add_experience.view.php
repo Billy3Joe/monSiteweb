@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="mt-5">Ajouter une solution web</h1>
+    <h1 class="mt-5">Ajouter une expérience</h1>
 
     <?php if (!empty($message)) : ?>
         <div class="alert alert-success mt-3">
@@ -8,9 +8,9 @@
     <?php endif; ?>
 
     <!-- Formulaire pour ajouter un service -->
-    <form action="<?= URL ?>form_add_webSolution" method="post" enctype="multipart/form-data" class="mt-4">
+    <form action="<?= URL ?>form_add_experience" method="post" enctype="multipart/form-data" class="mt-4">
         <div class="mb-3">
-            <label for="title" class="form-label">Nom de la solution:</label>
+            <label for="title" class="form-label">Nom de l'expérience:</label>
             <input type="text" name="title" class="form-control" required>
         </div>
 
@@ -22,6 +22,12 @@
         <div class="mb-3">
             <label for="description" class="form-label">Description:</label>
             <textarea name="description" class="form-control" required></textarea>
+        </div>
+
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Lien du client:</label>
+            <input type="text" name="link_customer" class="form-control" required>
         </div>
 
         <!-- Utilisez un bouton submit pour soumettre le formulaire -->

@@ -50,6 +50,9 @@
                         <a class="nav-link" aria-current="page" href="<?= URL; ?>services">Services</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>experiences">Expériences</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<?= URL; ?>webSolutions">Solutions Web</a>
                     </li>
                 <?php endif; ?>

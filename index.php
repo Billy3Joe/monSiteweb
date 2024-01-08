@@ -265,7 +265,13 @@ try {
                         case "services" : $administrateurController->services();
                         break;
 
+                        case "experiences" : $administrateurController->experiences();
+                        break;
+
                         case "form_add_service" : $administrateurController->add_data_service();
+                        break;
+
+                        case "form_add_experience" : $administrateurController->add_data_experience();
                         break;
 
                         case "solutionsWeb" : $visiteurController->solutionsWeb();

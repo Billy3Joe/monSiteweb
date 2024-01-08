@@ -96,8 +96,8 @@
                       <img src="<?php echo $experience['image']; ?>" class="card-img-top" alt="<?php echo $experience['title']; ?>">
                       <div class="card-body">
                           <h5 class="card-title"><?php echo $experience['title']; ?></h5>
-                          <p class="card-text"><?php echo $experience['categorie']; ?></p>
-                          <a href="<?php echo $experience['lien']; ?>" class="btn btn-primary">View Details</a>
+                          <p class="card-text"><?php echo $experience['description']; ?></p>
+                          <a href="<?php echo $experience['link_customer']; ?>" class="btn btn-primary">Lien du client</a>
                       </div>
                   </div>
               </div>
