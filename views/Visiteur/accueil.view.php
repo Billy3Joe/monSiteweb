@@ -112,9 +112,10 @@
         <?php foreach ($testimonials as $testimonial) : ?>
             <!-- Service -->
             <div class="col-md-4">
-                <p class="text-center"><?php echo $testimonial["nom"] ?></p>
-                <h5 class="text-center"><?php echo $testimonial["entreprise"] ?></h5>
+                <p class="text-center"><?php echo $testimonial["name"] ?></p>
+                <h5 class="text-center"><?php echo $testimonial["company"] ?></h5>
                 <p class="text-center"><?php echo $testimonial["details"] ?></p>
+                <p class="text-center"><mark><?php echo $testimonial["date"] ?></mark></p>
             </div>
               <?php endforeach; ?>
           </div>

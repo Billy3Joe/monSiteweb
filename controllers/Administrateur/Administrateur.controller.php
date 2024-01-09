@@ -127,17 +127,6 @@ class AdministrateurController extends MainController {
         $this->genererPage($data_page);
     }
 
-    public function experiences() {
-        $experiences = $this->administrateurManager->getExperiences();
-        $data_page = [
-            "page_description" => "Description de la page expérience",
-            "page_title" => "Titre de la page experience",
-            "experiences" => $experiences,
-            "view" => "views/Administrateur/experiences.view.php",
-            "template" => "views/common/template.php",
-        ];
-        $this->genererPage($data_page);
-    }
 
     public function add_data_service() {
         // Initialiser le message à vide
@@ -222,6 +211,19 @@ class AdministrateurController extends MainController {
         }
     }
 
+    public function experiences() {
+        $experiences = $this->administrateurManager->getExperiences();
+        $data_page = [
+            "page_description" => "Description de la page expérience",
+            "page_title" => "Titre de la page experience",
+            "experiences" => $experiences,
+            "view" => "views/Administrateur/experiences.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+
     public function add_data_experience() {
         // Initialiser le message à vide
         $message = "";
@@ -305,7 +307,65 @@ class AdministrateurController extends MainController {
         }
     }
 
+    public function testimonials() {
+        $testimonials = $this->administrateurManager->getTestimonials();
+        $data_page = [
+            "page_description" => "Description de la page avis/témoignages",
+            "page_title" => "Titre de la page avis/témoignages",
+            "testimonials" => $testimonials,
+            "view" => "views/Administrateur/testimonials.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
     
+    
+    public function add_data_testimony() {
+        // Initialiser le message et les erreurs à vide
+        $message = "";
+        $errors = [];
+
+        // Si le formulaire est soumis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupérez les données du formulaire
+            $name = htmlspecialchars($_POST['name']);
+            $company = htmlspecialchars($_POST['company']);
+            $details = htmlspecialchars($_POST['details']);
+
+            // Ajoutez la date actuelle (si vous ne voulez pas que l'utilisateur la fournisse)
+            $date_added = date("Y-m-d H:i:s");
+
+            // Validez les données (ajoutez des validations appropriées)
+            // ...
+
+            // Si aucune erreur, ajoutez le témoignage à la base de données
+            if (empty($errors)) {
+                $result = $this->administrateurManager->addTestimony($name, $company, $details, $date_added);
+
+                if ($result) {
+                    // Définissez le message de confirmation
+                    $message = "Le témoignage a été ajouté avec succès!";
+                } else {
+                    $errors[] = "Une erreur s'est produite lors de l'ajout du témoignage.";
+                }
+            }
+        }
+
+        // Définissez les données de la page
+        $data_page = [
+            "page_description" => "Description de la page ajout avis/témoignage",
+            "page_title" => "Titre de la page ajout avis/témoignage",
+            "message" => $message,
+            "errors" => $errors,
+            "view" => "views/Administrateur/form_add_testimony.view.php",
+            "template" => "views/common/template.php",
+        ];
+
+        // Générez la page
+        $this->genererPage($data_page);
+    }
+
+
     public function messages() {
         $messages = $this->administrateurManager->getMessages();
         $data_page = [

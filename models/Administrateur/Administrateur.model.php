@@ -146,7 +146,34 @@ class AdministrateurManager extends MainManager {
         $stmt->bindParam(':link_customer', $link_customer);
         $stmt->execute();
     }
-    
+
+     //Fonction pour récupérer la liste de tous les experiences 
+     public function getTestimonials() {
+        $req = $this->getBdd()->prepare("SELECT * FROM temoignages");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
+
+    public function addTestimony($name, $company, $details, $date_added) {
+        try {
+            $query = "INSERT INTO temoignages (name, company, details, date) VALUES (:name, :company, :details, :date_added)";
+            $stmt = $this->getBdd()->prepare($query);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':company', $company);
+            $stmt->bindParam(':details', $details);
+            $stmt->bindParam(':date_added', $date_added);
+            return $stmt->execute();
+            return $stmt->execute();
+        } catch (Exception $e) {
+            // Gérer l'exception, par exemple, en journalisant l'erreur ou en affichant un message à l'utilisateur
+            error_log("Erreur lors de l'ajout du témoignage : " . $e->getMessage());
+            return false;  // Indiquer que l'opération a échoué
+        }
+    }
+
+
     public function deleteMessage($idMessage) {
         // Vérifiez si l'identifiant du message est valide
         if (is_numeric($idMessage)) {
