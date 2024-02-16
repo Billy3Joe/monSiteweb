@@ -58,6 +58,9 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<?= URL; ?>webSolutions">Solutions Web</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>mobileApp">Applications Mobile</a>
+                    </li>
                 <?php endif; ?>
 
                  <!-- Condition et liens pour la connexion et le compte utilisateur -->

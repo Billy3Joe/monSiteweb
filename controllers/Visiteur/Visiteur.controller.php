@@ -96,9 +96,11 @@ class VisiteurController extends MainController {
 
     public function appMobile()
     {
+        $mobileApps = $this->visiteurManager->getAppMobiles();
         $data_page = [
             "page_description" => "Description de la page Application Mobile",
             "page_title" => "Titre de la page Application Mobile",
+            "mobileApps" => $mobileApps,
             "view" => "views/Visiteur/appMobile.view.php",
             "template" => "views/common/template.php",
         ];

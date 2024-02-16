@@ -65,6 +65,15 @@ class VisiteurManager extends MainManager {
         $req->closeCursor();
         return $datas;
     }
+
+       //Fonction pour récupérer la liste de toutes les applications mobile
+       public function getAppMobiles() {
+        $req = $this->getBdd()->prepare("SELECT * FROM app_mobile");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
 }
 
 // Créer une instance de VisiteurManager

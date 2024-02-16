@@ -285,6 +285,12 @@
                             case "appMobile" : $visiteurController->appMobile();
                             break;
 
+                            case "mobileApp" : $administrateurController->mobileApp();
+                            break;
+
+                            case "form_add_appMobile" : $administrateurController->add_data_appMobile();
+                            break;
+
                             case "conceptionStrategie" : $visiteurController->conceptionStrategie();
                             break;
                             

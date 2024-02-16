@@ -214,8 +214,8 @@ class AdministrateurController extends MainController {
     public function experiences() {
         $experiences = $this->administrateurManager->getExperiences();
         $data_page = [
-            "page_description" => "Description de la page expérience",
-            "page_title" => "Titre de la page experience",
+            "page_description" => "Description de la page service",
+            "page_title" => "Titre de la page service",
             "experiences" => $experiences,
             "view" => "views/Administrateur/experiences.view.php",
             "template" => "views/common/template.php",
@@ -299,7 +299,7 @@ class AdministrateurController extends MainController {
         // Déplacez le fichier
         if (move_uploaded_file($image['tmp_name'], $imagePath)) {
             // Utilisez un chemin relatif pour stocker dans la base de données
-            $relativeImagePath = "public/Assets/imagesexperiences/" . $imageName;
+            $relativeImagePath = "public/Assets/images/experiences/" . $imageName;
             return $relativeImagePath;
         } else {
             // Gérez l'erreur si le déplacement échoue
@@ -470,6 +470,100 @@ class AdministrateurController extends MainController {
         if (move_uploaded_file($image['tmp_name'], $imagePath)) {
             // Utilisez un chemin relatif pour stocker dans la base de données
             $relativeImagePath = "public/Assets/images/webSolutions/" . $imageName;
+            return $relativeImagePath;
+        } else {
+            // Gérez l'erreur si le déplacement échoue
+            die("Erreur lors du déplacement de l'image vers l'emplacement permanent");
+        }
+    }
+
+    public function mobileApp() {
+        $mobileApps = $this->administrateurManager->getAppMobiles();
+        $data_page = [
+            "page_description" => "Description de la page application mobile",
+            "page_title" => "Titre de la page application",
+            "mobileApps" => $mobileApps,
+            "view" => "views/Administrateur/appMobile.view.php",
+            "template" => "views/common/template.php",
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function add_data_appMobile() {
+        // Initialiser le message à vide
+        $message = "";
+    
+        // Définissez le chemin vers le dossier d'images
+        $uploadDir = "public/Assets/images/";
+    
+        // Si le formulaire est soumis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupérez les données du formulaire
+            $title = htmlspecialchars($_POST['title']);
+            $image = $_FILES['image']; // Utilisez $_FILES pour les fichiers
+            $description = htmlspecialchars($_POST['description']);
+    
+            // Traiter l'upload de l'image et obtenir le chemin final
+            $imagePath = $this->handleImageUploadAppMobile($image);
+    
+            // Ajoutez le service à la base de données
+            $this->administrateurManager->addAppMobile($title, $imagePath, $description);
+    
+            // Définissez le message de confirmation
+            $message = "L'application mobile' a été ajouté avec succès!";
+        }
+    
+        // Définissez les données de la page
+        $data_page = [
+            "page_description" => "Description de la page ajout application mobile",
+            "page_title" => "Titre de la page ajoutapplication mobile",
+            "message" => $message,
+            "uploadDir" => $uploadDir,  // Ajoutez cette ligne
+            "view" => "views/Administrateur/form_add_appMobile.view.php",
+            "template" => "views/common/template.php",
+        ];
+    
+        // Générez la page
+        $this->genererPage($data_page);
+    }    
+
+     // Fonction pour traiter l'upload de l'image service
+     private function handleImageUploadappMobile($image) {
+        // Vérifiez s'il y a des erreurs lors de l'upload
+        if ($image['error'] !== UPLOAD_ERR_OK) {
+            // Gérez l'erreur selon vos besoins
+            die("Erreur lors de l'upload de l'image");
+        }
+    
+        // Vérifiez l'extension du fichier
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $imageExtension = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+    
+        if (!in_array($imageExtension, $allowedExtensions)) {
+            die("L'extension du fichier n'est pas autorisée. Seules les extensions JPG, JPEG, PNG, et GIF sont autorisées.");
+        }
+    
+        // Vérifiez la taille du fichier
+        $maxFileSize = 5 * 1024 * 1024; // 5 Mo
+        if ($image['size'] > $maxFileSize) {
+            die("La taille du fichier dépasse la limite autorisée. La taille maximale autorisée est de 5 Mo.");
+        }
+    
+        // Déplacez le fichier temporaire vers un emplacement permanent
+        $uploadDir = "public/Assets/images/appMobile/";
+    
+        // Vérifiez si le dossier de destination existe, sinon créez-le
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true); // Créez le dossier récursivement avec des permissions élevées (à ajuster selon les besoins)
+        }
+    
+        $imageName = uniqid() . "_" . $image['name'];
+        $imagePath = $uploadDir . $imageName;
+    
+        // Déplacez le fichier
+        if (move_uploaded_file($image['tmp_name'], $imagePath)) {
+            // Utilisez un chemin relatif pour stocker dans la base de données
+            $relativeImagePath = "public/Assets/images/appMobile/" . $imageName;
             return $relativeImagePath;
         } else {
             // Gérez l'erreur si le déplacement échoue

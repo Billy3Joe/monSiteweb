@@ -106,12 +106,11 @@ class AdministrateurManager extends MainManager {
     public function addService($title, $imagePath, $description) {
         // ... votre logique pour ajouter le service à la base de données
         // Assurez-vous que le chemin stocké dans la base de données inclut le préfixe "Assets/images/"
-        $query = "INSERT INTO service (title, image, description, link_customer) VALUES (:title, :image, :description, :link_customer)";
+        $query = "INSERT INTO service (title, image, description) VALUES (:title, :image, :description)";
         $stmt = $this->getBdd()->prepare($query);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':image', $imagePath);
         $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':link_customer', $description);
         $stmt->execute();
     }
 
@@ -211,6 +210,26 @@ class AdministrateurManager extends MainManager {
        //Fonction pour récupérer la liste de toutes les solutions web 
        public function getWebSolutions() {
         $req = $this->getBdd()->prepare("SELECT * FROM webSolution");
+        $req->execute();
+        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $datas;
+    }
+
+    public function addAppMobile($title, $imagePath, $description) {
+        // ... votre logique pour ajouter le service à la base de données
+        // Assurez-vous que le chemin stocké dans la base de données inclut le préfixe "Assets/images/"
+        $query = "INSERT INTO app_mobile (title, image, description) VALUES (:title, :image, :description)";
+        $stmt = $this->getBdd()->prepare($query);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':image', $imagePath);
+        $stmt->bindParam(':description', $description);
+        $stmt->execute();
+    }
+
+       //Fonction pour récupérer la liste de toutes les applications mobile
+       public function getAppMobiles() {
+        $req = $this->getBdd()->prepare("SELECT * FROM app_mobile");
         $req->execute();
         $datas = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
