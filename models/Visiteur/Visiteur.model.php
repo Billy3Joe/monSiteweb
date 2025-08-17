@@ -41,7 +41,7 @@ class VisiteurManager extends MainManager {
         }
     }
 
-    //Fonction pour récupérer la liste de tous les utilisateurs enregistrés sur le site
+    //Fonction pour récupérer la liste de tous les services enregistrés sur le site
     public function getServices() {
         $req = $this->getBdd()->prepare("SELECT * FROM service");
         $req->execute();
@@ -49,7 +49,8 @@ class VisiteurManager extends MainManager {
         $req->closeCursor();
         return $datas;
     }
-
+    
+    //Fonction pour récupérer la liste de tous les témoignages enregistrés sur le site
     public function getTestimonials() {
         $req = $this->getBdd()->prepare("SELECT * FROM temoignages");
         $req->execute();
@@ -57,7 +58,8 @@ class VisiteurManager extends MainManager {
         $req->closeCursor();
         return $datas;
     }
-
+    
+    //Fonction pour récupérer la liste de tous les expériences enregistrés sur le site
     public function getExperiences() {
         $req = $this->getBdd()->prepare("SELECT * FROM experiences");
         $req->execute();

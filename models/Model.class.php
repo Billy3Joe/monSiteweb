@@ -5,7 +5,7 @@ abstract class Model {
 
     private static function setBdd() {
         try {
-            self::$pdo = new PDO("mysql:host=localhost;dbname=bd;charset=utf8mb4", "root", "root");
+            self::$pdo = new PDO("mysql:host=localhost;dbname=worldTechInnovation;charset=utf8mb4", "root", "root");
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             // Gérer l'erreur de connexion (enregistrement dans les journaux, affichage d'un message d'erreur, etc.)

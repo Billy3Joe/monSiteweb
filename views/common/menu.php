@@ -53,13 +53,13 @@
                         <a class="nav-link" aria-current="page" href="<?= URL; ?>experiences">Expériences</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="<?= URL; ?>testimonials">Avis clients</a>
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>testimonials">Avis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="<?= URL; ?>webSolutions">Solutions Web</a>
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>webSolutions">App Web</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="<?= URL; ?>mobileApp">Applications Mobile</a>
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>mobileApp">App Mobile</a>
                     </li>
                 <?php endif; ?>
 
@@ -76,7 +76,7 @@
                         <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/profil">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/deconnexion">Se déconnecter</a>
+                        <a class="nav-link" aria-current="page" href="<?= URL; ?>compte/deconnexion">Déconnection</a>
                     </li>
                 <?php endif; ?>
             </ul>

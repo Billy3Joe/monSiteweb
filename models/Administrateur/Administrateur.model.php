@@ -123,6 +123,15 @@ class AdministrateurManager extends MainManager {
         return $datas;
     }
 
+    //Fonction pour recupérer le nombre total de experiences
+    public function getNombreExperiences() {
+        $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_experiences FROM experiences");
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $result['nombre_experiences'];
+    }
+
        //Fonction pour recupérer une experience par son id
        public function getExperienceById($id) {
         $req = "SELECT * FROM experiences WHERE id = :id";
@@ -146,13 +155,22 @@ class AdministrateurManager extends MainManager {
         $stmt->execute();
     }
 
-     //Fonction pour récupérer la liste de tous les experiences 
+     //Fonction pour récupérer la liste de tous les avis 
      public function getTestimonials() {
         $req = $this->getBdd()->prepare("SELECT * FROM temoignages");
         $req->execute();
         $datas = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $datas;
+    }
+
+      //Fonction pour recupérer le nombre total de temoignages
+      public function nombreTemoignages() {
+        $req = $this->getBdd()->prepare("SELECT COUNT(*) AS nombre_temoignages FROM Temoignages");
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $result['nombre_temoignages'];
     }
 
     public function addTestimony($name, $company, $details, $date_added) {
